@@ -1,0 +1,127 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<number>"
+    ],
+    "<other_option>": [
+        " -d str",
+        " -z",
+        " --from=<from1>",
+        " --from-unit=<int>",
+        " --to=<to1>",
+        " --to-unit=<int>",
+        " --round=<round1>",
+        " --padding=<int>",
+        " --suffix=str",
+        " --grouping",
+        " --delimiter=str",
+        " --field=<field1>",
+        " --debug",
+        " ---debug",
+        " --header<optional_int>?",
+        " --format=<format1>",
+        " --invalid=<invalid1>",
+        " --zero-terminated"
+    ],
+    "<format1>": [
+        "%<digit>+f",
+        "%f",
+        "%-<digit>+f",
+        "%'f",
+        "%<digit>*.<digit>+f",
+        "%<digit>+.<digit>*f"
+    ],
+    "<number>": [
+        " <digit>+(.<digit>+)?<suffix>?"
+    ],
+    "<suffix>": [
+        "K",
+        "M",
+        "G",
+        "T",
+        "P",
+        "E",
+        "Z",
+        "Y",
+        "KB",
+        "MB",
+        "GB",
+        "TB",
+        "PB",
+        "EB",
+        "ZB",
+        "YB",
+        "Ki",
+        "Mi"
+    ],
+    "<from1>": [
+        "none",
+        "auto",
+        "si",
+        "iec",
+        "iec-i"
+    ],
+    "<decimal-int>": [
+        "<non-zero-digit><digit>*"
+    ],
+    "<digit>": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "<non-zero-digit>": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "<int>": [
+        "<decimal-int>"
+    ],
+    "<to1>": [
+        "none",
+        "si",
+        "iec",
+        "iec-i"
+    ],
+    "<round1>": [
+        "up",
+        "down",
+        "from-zero",
+        "towards-zero",
+        "nearest"
+    ],
+    "<field1>": [
+        "-",
+        "<digit>+",
+        "<digit>+-<digit>+",
+        "-<digit>+",
+        "<digit>+-"
+    ],
+    "<optional_int>": [
+        "=<int>"
+    ],
+    "<invalid1>": [
+        "abort",
+        "fail",
+        "warn",
+        "ignore"
+    ]
+}

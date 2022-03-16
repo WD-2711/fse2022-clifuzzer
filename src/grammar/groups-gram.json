@@ -1,0 +1,19 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<users>?"
+    ],
+    "<other_option>": [
+        ""
+    ],
+    "<users>": [
+        " ubuntu",
+        " lxd",
+        " root"
+    ]
+}

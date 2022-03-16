@@ -1,0 +1,39 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./src/set-fields.gcda, 'src/set-fields.c', 0.00, 113, 0.00, 80
+./src/set-fields.gcda, 'src/system.h', 0.00, 1, 0.00, 2
+./src/cut.gcda, 'src/cut.c', 9.95, 221, 2.64, 227
+./src/cut.gcda, 'src/system.h', 0.00, 22, 0.00, 14
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 0.00, 4, 0.00, 6
+./lib/fadvise.gcda, 'lib/fadvise.c', 0.00, 7, 0.00, 2
+./lib/free.gcda, 'lib/stdlib.h', 0.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 0.00, 7, 0.00, 0.00
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 0.00, 21, 0.00, 8
+./lib/quotearg.gcda, 'lib/quotearg.c', 0.00, 387, 0.00, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 0.00, 38, 0.00, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 0.00, 3, 0.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 28.57, 7, 66.67, 6
+./lib/freadahead.gcda, 'lib/freadahead.c', 0.00, 4, 0.00, 4
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 0.00, 81, 0.00, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/localcharset.gcda, 'lib/localcharset.c', 0.00, 8, 0.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/freadseek.gcda, 'lib/freadseek.c', 0.00, 36, 0.00, 28
+./lib/freadptr.gcda, 'lib/freadptr.c', 0.00, 7, 0.00, 4
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 80.00, 10
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 60.00, 10
+./lib/getndelim2.gcda, 'lib/getndelim2.c', 0.00, 77, 0.00, 54
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 0.00, 10, 0.00, 8
+./lib/memchr2.gcda, 'lib/memchr2.c', 0.00, 43, 0.00, 20
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 1240
+total_statement_coverage_%, 13.83%
+total_no_of_branches, 1028
+total_branch_coverage_%, 11.80%

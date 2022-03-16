@@ -1,0 +1,31 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<context>?<command>"
+    ],
+    "<other_option>": [
+        " -r str",
+        " -t str",
+        " -u str",
+        " -l str",
+        " -c",
+        " --role=str",
+        " --type=str",
+        " --user=str",
+        " --range=str",
+        " --compute"
+    ],
+    "<context>": [
+        " str:str:str:str"
+    ],
+    "<command>": [
+        " FILE/testopt -a -b 10",
+        " targets/coreutils/src/ls FILE",
+        " targets/coreutils/src/wc FILE/README"
+    ]
+}

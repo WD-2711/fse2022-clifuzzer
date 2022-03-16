@@ -1,0 +1,43 @@
+The subprocess gcov call returned 0 with the following stderr:
+./afl-tee.gcno:cannot open notes file
+./afl-tee.gcda:not a gcov data file
+
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./afl-tee.gcda, cov returned a non list:, <class 'str'>, NaN, NaN, Nan
+./src/tee.gcda, 'src/tee.c', 50.49, 103, 54.55, 66
+./src/tee.gcda, 'lib/xbinary-io.h', 100.00, 2, 0.00, 0.00
+./src/tee.gcda, 'lib/binary-io.h', 100.00, 4, 0.00, 0.00
+./src/tee.gcda, 'src/system.h', 11.76, 17, 0.00, 12
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 0.00, 4, 0.00, 6
+./lib/fadvise.gcda, 'lib/fadvise.c', 85.71, 7, 100.00, 2
+./lib/free.gcda, 'lib/stdlib.h', 100.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 100.00, 7, 0.00, 0.00
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 0.00, 21, 0.00, 8
+./lib/quotearg.gcda, 'lib/quotearg.c', 0.00, 387, 0.00, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 0.00, 38, 0.00, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 0.00, 3, 0.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 28.57, 7, 66.67, 6
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 6.17, 81, 2.63, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/localcharset.gcda, 'lib/localcharset.c', 0.00, 8, 0.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/fopen-safer.gcda, 'lib/fopen-safer.c', 29.41, 17, 40.00, 10
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 80.00, 10
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 60.00, 10
+./lib/fcntl.gcda, 'lib/fcntl.c', 0.00, 51, 0.00, 22
+./lib/dup-safer.gcda, 'lib/dup-safer.c', 0.00, 2, 0.00, 0.00
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/argmatch.gcda, 'lib/argmatch.c', 0.00, 51, 0.00, 30
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 0.00, 10, 0.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 963
+total_statement_coverage_%, 32.18%
+total_no_of_branches, 735
+total_branch_coverage_%, 18.25%

@@ -1,0 +1,41 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<number><number>?<number>?"
+    ],
+    "<other_option>": [
+        " -f <format1>",
+        " -s str",
+        " -w",
+        " --format=<format1>",
+        " --separator=str",
+        " --equal-width"
+    ],
+    "<number>": [
+        " <digit>+(.<digit>+)?"
+    ],
+    "<format1>": [
+        "%<digit>+f",
+        "%f",
+        "%-<digit>+f",
+        "%<digit>*.<digit>+f",
+        "%<digit>+.<digit>*f"
+    ],
+    "<digit>": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ]
+}

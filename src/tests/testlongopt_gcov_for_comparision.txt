@@ -1,0 +1,132 @@
+        -:    0:Source:testlongopt.c
+        -:    0:Graph:testlongopt.gcno
+        -:    0:Data:testlongopt.gcda
+        -:    0:Runs:20
+        -:    0:Programs:1
+        -:    1://code from https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Option-Example.html
+        -:    2://and modified.
+        -:    3:
+        -:    4:#include <stdio.h>
+        -:    5:#include <stdlib.h>
+        -:    6:#include <getopt.h>
+        -:    7:#include <limits.h>
+        -:    8:
+        -:    9:/* Flag set by ‘--verbose’. */
+        -:   10:static int verbose_flag;
+        -:   11:
+        -:   12:enum
+        -:   13:{
+        -:   14:  NOARG_DUMMY = CHAR_MAX + 1,
+        -:   15:  REQARG_DUMMY,
+        -:   16:  OPTARG_DUMMY
+        -:   17:};
+        -:   18:
+        -:   19:int
+      104:   20:main (int argc, char **argv)
+        -:   21:{
+        -:   22:  int c;
+        -:   23:
+        -:   24:  while (1)
+       84:   25:    {
+        -:   26:      static struct option long_options[] =
+        -:   27:        {
+        -:   28:          /* These options set a flag. */
+        -:   29:          {"verbose", no_argument,       &verbose_flag, 1},
+        -:   30:          {"brief",   no_argument,       &verbose_flag, 0},
+        -:   31:          /* These options don’t set a flag.
+        -:   32:             We distinguish them by their indices. */
+        -:   33:          {"add",          no_argument,       0, 'a'},
+        -:   34:          {"noarg_dummy",  no_argument,       NULL, NOARG_DUMMY},
+        -:   35:          {"delete",       required_argument, 0, 'd'},
+        -:   36:          {"reqarg_dummy", required_argument, NULL, REQARG_DUMMY},
+        -:   37:          {"modify",       optional_argument, 0, 'm'},
+        -:   38:          {"optarg_dummy", optional_argument, NULL, OPTARG_DUMMY},
+        -:   39:          {0, 0, 0, 0}
+        -:   40:        };
+        -:   41:      /* getopt_long stores the option index here. */
+      104:   42:      int option_index = 0;
+        -:   43:
+      104:   44:      c = getopt_long (argc, argv, "abc:d:m::f::",
+        -:   45:                       long_options, &option_index);
+        -:   46:
+        -:   47:      /* Detect the end of the options. */
+      104:   48:      if (c == -1)
+       20:   49:        break;
+        -:   50:
+       84:   51:      switch (c)
+        -:   52:        {
+       17:   53:        case 0:
+       17:   54:          printf ("option %s\n", long_options[option_index].name);
+       17:   55:          break;
+        -:   56:
+       15:   57:        case 'a':
+       15:   58:          puts ("option -a\n");
+       15:   59:          break;
+        -:   60:
+        6:   61:        case 'b':
+        6:   62:          puts ("option -b\n");
+        6:   63:          break;
+        -:   64:
+        7:   65:        case 'c':
+        7:   66:          printf ("option -c with value `%s'\n", optarg);
+        7:   67:          break;
+        -:   68:
+       16:   69:        case 'd':
+       16:   70:          printf ("option -d with value `%s'\n", optarg);
+       16:   71:          break;
+        -:   72:
+        2:   73:        case 'f':
+        2:   74:          if (optarg)
+        1:   75:            printf ("option -f with value `%s'\n", optarg);
+        -:   76:          else
+        1:   77:            printf ("option -f with no value \n");
+        2:   78:          break;
+        -:   79:        
+        4:   80:        case 'm':
+        4:   81:          if (optarg)
+        2:   82:            printf ("option -m with value `%s'\n", optarg);
+        -:   83:          else
+        2:   84:            printf ("option -m with no value \n");
+        4:   85:          break;
+        -:   86:
+        6:   87:        case NOARG_DUMMY:
+        6:   88:          puts("option --noarg_dummy");
+        6:   89:          break;
+        -:   90:        
+        8:   91:        case REQARG_DUMMY:
+        8:   92:          printf ("option --reqarg_dummy with value `%s'\n", optarg);
+        8:   93:          break;
+        -:   94:
+        3:   95:        case OPTARG_DUMMY:
+        3:   96:        if (optarg)
+        1:   97:            printf ("option --optarg_dummy with value `%s'\n", optarg);
+        -:   98:          else
+        2:   99:            printf ("option --optarg_dummy with no value \n");
+        3:  100:          break;
+        -:  101:  
+    #####:  102:        case '?':
+        -:  103:          /* getopt_long already printed an error message. */
+    #####:  104:          break;
+        -:  105:
+    #####:  106:        default:
+    #####:  107:          abort ();
+        -:  108:        }
+        -:  109:    }
+        -:  110:
+        -:  111:  /* Instead of reporting ‘--verbose’
+        -:  112:     and ‘--brief’ as they are encountered,
+        -:  113:     we report the final status resulting from them. */
+       20:  114:  if (verbose_flag)
+        3:  115:    puts ("verbose flag is set");
+        -:  116:
+        -:  117:  /* Print any remaining command line arguments (not options). */
+       20:  118:  if (optind < argc)
+        -:  119:    {
+    #####:  120:      printf ("non-option ARGV-elements: ");
+    #####:  121:      while (optind < argc)
+    #####:  122:        printf ("%s ", argv[optind++]);
+    #####:  123:      putchar ('\n');
+        -:  124:    }
+        -:  125:
+       20:  126:  exit (0);
+        -:  127:}

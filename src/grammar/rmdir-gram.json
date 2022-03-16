@@ -1,0 +1,23 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<directories>+"
+    ],
+    "<other_option>": [
+        " -p",
+        " -v",
+        " --ignore-fail-on-non-empty",
+        " --path",
+        " --parents",
+        " --verbose"
+    ],
+    "<directories>": [
+        " FILE",
+        " FILE/emptydir"
+    ]
+}

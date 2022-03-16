@@ -1,0 +1,14 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./dc/numeric.gcda, 'numeric.c', 94.87, 234, 84.21, 76
+./dc/array.gcda, 'array.c', 95.35, 43, 100.00, 28
+./dc/eval.gcda, 'eval.c', 92.51, 427, 96.90, 290
+./dc/string.gcda, 'string.c', 88.89, 63, 88.89, 18
+./dc/dc.gcda, 'dc.c', 28.26, 92, 42.55, 47
+./dc/stack.gcda, 'stack.c', 96.67, 240, 100.00, 108
+./dc/misc.gcda, 'misc.c', 68.00, 50, 80.00, 20
+./lib/number.gcda, 'number.c', 91.18, 771, 87.13, 544
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/bc
+total_no_of_statements, 1920
+total_statement_coverage_%, 81.97%
+total_no_of_branches, 1131
+total_branch_coverage_%, 84.96%

@@ -1,0 +1,75 @@
+        -:    0:Source:testopt.c
+        -:    0:Graph:testopt.gcno
+        -:    0:Data:testopt.gcda
+        -:    0:Runs:20
+        -:    0:Programs:1
+        -:    1://Code taken from https://www.gnu.org/software/libc/manual/html_node/Example-of-Getopt.html
+        -:    2://and modified.
+        -:    3:
+        -:    4:#include <ctype.h>
+        -:    5:#include <stdio.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <unistd.h>
+        -:    8:#include <sys/stat.h>
+        -:    9:
+        -:   10:
+        -:   11://NOTE: Ideally I should have a testcase to test when an option 
+        -:   12://expects a specific value, maybe from a set. COREUTILS implements 
+        -:   13://this in a more complex way. 
+        -:   14://This seems too much work for UT. Will just ignore for now.
+        -:   15:
+        -:   16:int
+       20:   17:main (int argc, char **argv)
+        -:   18:{
+       20:   19:  int aflag = 0;
+       20:   20:  char *bvalue = NULL;
+       20:   21:  char *cvalue = NULL;
+        -:   22:  int index;
+        -:   23:  int c;
+        -:   24:
+       20:   25:  opterr = 0;
+        -:   26:  struct stat sb;
+       82:   27:  while ((c = getopt (argc, argv, "ab:c::")) != -1)
+       53:   28:    switch (c)
+        -:   29:      {
+       16:   30:      case 'a':
+       16:   31:        aflag = 1;
+       16:   32:        break;
+       23:   33:      case 'b':
+       23:   34:        bvalue = optarg;
+       23:   35:        break;
+        3:   36:      case 'c':
+        3:   37:        cvalue = optarg;
+        3:   38:        break;
+       11:   39:      case '?':
+       11:   40:        if (optopt == 'c')
+    #####:   41:          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+       11:   42:        else if (isprint (optopt))
+       11:   43:          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+        -:   44:        else
+    #####:   45:          fprintf (stderr,
+        -:   46:                   "Unknown option character `\\x%x'.\n",
+        -:   47:                   optopt);
+       11:   48:        return 1;
+    #####:   49:      default:
+    #####:   50:        if (isprint (optopt))
+    #####:   51:          fprintf (stderr, "Unknown option `-%c'. Aborting\n", optopt);
+        -:   52:        else
+    #####:   53:          fprintf (stderr, "Unknown option. Aborting\n");
+    #####:   54:        abort ();
+        -:   55:      }
+        -:   56:
+        9:   57:  printf ("aflag = %d, bvalue = %s, cvalue = %s\n",
+        -:   58:          aflag, bvalue, cvalue);
+        -:   59:
+        9:   60:  for (index = optind; index < argc; index++){
+        2:   61:    printf ("Non-option argument %s\n", argv[index]);
+        2:   62:    if (lstat(argv[index], &sb) == -1) {
+        2:   63:               perror("lstat");
+        2:   64:               exit(EXIT_FAILURE);
+        -:   65:    }
+        -:   66:    
+        -:   67:  }
+        -:   68:    
+        7:   69:  return 0;
+        -:   70:}

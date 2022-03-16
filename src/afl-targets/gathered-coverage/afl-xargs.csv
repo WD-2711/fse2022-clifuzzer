@@ -1,0 +1,53 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./xargs/xargs.gcda, 'xargs.c', 38.80, 652, 49.51, 406
+./lib/extendbuf.gcda, 'extendbuf.c', 64.52, 31, 70.00, 20
+./lib/bugreports.gcda, 'bugreports.c', 0.00, 2, 0.00, 0.00
+./lib/findutils-version.gcda, 'findutils-version.c', 0.00, 4, 0.00, 0.00
+./lib/fdleak.gcda, 'fdleak.c', 49.64, 139, 57.58, 66
+./lib/safe-atoi.gcda, 'safe-atoi.c', 58.82, 17, 80.00, 10
+./lib/buildcmd.gcda, 'buildcmd.c', 54.41, 204, 58.46, 130
+./gl/lib/freadahead.gcda, 'freadahead.c', 100.00, 4, 100.00, 4
+./gl/lib/closein.gcda, 'closein.c', 50.00, 18, 85.71, 14
+./gl/lib/close-stream.gcda, 'close-stream.c', 62.50, 8, 40.00, 10
+./gl/lib/localcharset.gcda, 'localcharset.c', 0.00, 8, 0.00, 4
+./gl/lib/free.gcda, 'stdlib.h', 100.00, 1, 0.00, 0.00
+./gl/lib/free.gcda, 'free.c', 100.00, 7, 0.00, 0.00
+./gl/lib/cloexec.gcda, 'cloexec.c', 0.00, 9, 0.00, 8
+./gl/lib/closeout.gcda, 'closeout.c', 23.53, 17, 40.00, 10
+./gl/lib/mbslen.gcda, 'string.h', 0.00, 1, 0.00, 0.00
+./gl/lib/mbslen.gcda, 'mbslen.c', 0.00, 8, 0.00, 6
+./gl/lib/dup-safer.gcda, 'dup-safer.c', 100.00, 2, 0.00, 0.00
+./gl/lib/version-etc.gcda, 'version-etc.c', 0.00, 58, 0.00, 23
+./gl/lib/xstrtoul.gcda, 'xstrtol.c', 0.00, 69, 0.00, 88
+./gl/lib/safe-read.gcda, 'safe-read.c', 55.56, 9, 40.00, 10
+./gl/lib/progname.gcda, 'progname.c', 62.50, 16, 80.00, 10
+./gl/lib/mbrtowc.gcda, 'wchar.h', 0.00, 1, 0.00, 2
+./gl/lib/mbrtowc.gcda, 'mbrtowc.c', 0.00, 9, 0.00, 6
+./gl/lib/mbsstr.gcda, 'string.h', 0.00, 1, 0.00, 0.00
+./gl/lib/mbsstr.gcda, 'mbsstr.c', 0.00, 137, 0.00, 134
+./gl/lib/mbsstr.gcda, 'str-kmp.h', 0.00, 39, 0.00, 20
+./gl/lib/fcntl.gcda, 'fcntl.c', 47.06, 51, 27.27, 22
+./gl/lib/fflush.gcda, 'stdio.h', 100.00, 1, 100.00, 2
+./gl/lib/fflush.gcda, 'fflush.c', 71.43, 7, 100.00, 6
+./gl/lib/xalloc-die.gcda, 'xalloc-die.c', 0.00, 3, 0.00, 0.00
+./gl/lib/mbchar.gcda, 'mbchar.h', 0.00, 15, 0.00, 6
+./gl/lib/malloca.gcda, 'malloca.c', 0.00, 18, 0.00, 8
+./gl/lib/pipe-safer.gcda, 'pipe-safer.c', 55.56, 9, 100.00, 6
+./gl/lib/quotearg.gcda, 'quotearg.c', 0.00, 387, 0.00, 324
+./gl/lib/quotearg.gcda, 'xalloc.h', 0.00, 2, 0.00, 0.00
+./gl/lib/quotearg.gcda, 'c-strcaseeq.h', 0.00, 38, 0.00, 56
+./gl/lib/quotearg.gcda, 'c-ctype.h', 0.00, 3, 0.00, 20
+./gl/lib/setlocale_null.gcda, 'setlocale_null.c', 0.00, 21, 0.00, 8
+./gl/lib/strnlen1.gcda, 'strnlen1.c', 0.00, 4, 0.00, 2
+./gl/lib/fseeko.gcda, 'fseeko.c', 30.00, 10, 25.00, 8
+./gl/lib/fd-safer.gcda, 'fd-safer.c', 100.00, 8, 100.00, 2
+./gl/lib/hard-locale.gcda, 'hard-locale.c', 0.00, 4, 0.00, 6
+./gl/lib/xmalloc.gcda, 'xmalloc.c', 36.00, 25, 25.00, 16
+./gl/lib/xmalloc.gcda, 'xalloc.h', 0.00, 24, 0.00, 16
+./gl/lib/open-safer.gcda, 'open-safer.c', 50.00, 8, 100.00, 4
+./gl/lib/opendir-safer.gcda, 'opendir-safer.c', 31.58, 19, 50.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/findutils
+total_no_of_statements, 2128
+total_statement_coverage_%, 30.68%
+total_no_of_branches, 1501
+total_branch_coverage_%, 28.27%

@@ -1,0 +1,75 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./lib/obstack.gcda, 'obstack.c', 40.40, 99, 42.86, 42
+./lib/xstrtoimax.gcda, 'xstrtol.c', 0.00, 64, 0.00, 106
+./lib/fts.gcda, 'fts-cycle.c', 0.00, 8, 0.00, 4
+./lib/fts.gcda, 'fts.c', 0.00, 626, 0.00, 486
+./lib/dup-safer.gcda, 'dup-safer.c', 0.00, 2, 0.00, 0.00
+./lib/regex.gcda, 'regexec.c', 0.00, 1520, 0.00, 1268
+./lib/regex.gcda, 'regex_internal.h', 8.57, 35, 4.17, 48
+./lib/regex.gcda, 'regcomp.c', 21.18, 1369, 27.55, 1020
+./lib/regex.gcda, 'regex_internal.c', 17.50, 817, 13.06, 628
+./lib/regex.gcda, 'malloc/dynarray-skeleton.c', 0.00, 34, 0.00, 18
+./lib/regex.gcda, 'malloc/dynarray.h', 0.00, 2, 0.00, 0.00
+./lib/mbscasecmp.gcda, 'string.h', 0.00, 1, 0.00, 2
+./lib/mbscasecmp.gcda, 'mbscasecmp.c', 0.00, 25, 0.00, 44
+./lib/c-strcasecmp.gcda, 'c-strcasecmp.c', 0.00, 14, 0.00, 10
+./lib/c-strcasecmp.gcda, 'c-ctype.h', 0.00, 4, 0.00, 4
+./lib/fd-safer.gcda, 'fd-safer.c', 37.50, 8, 100.00, 2
+./lib/quotearg.gcda, 'quotearg.c', 0.00, 387, 0.00, 322
+./lib/quotearg.gcda, 'c-strcaseeq.h', 0.00, 38, 0.00, 56
+./lib/quotearg.gcda, 'c-ctype.h', 0.00, 3, 0.00, 20
+./lib/strnlen1.gcda, 'strnlen1.c', 0.00, 4, 0.00, 2
+./lib/localeinfo.gcda, 'localeinfo.c', 54.05, 37, 35.71, 28
+./lib/mbrlen.gcda, 'mbrlen.c', 0.00, 4, 0.00, 2
+./lib/colorize.gcda, 'colorize-posix.c', 10.00, 10, 0.00, 4
+./lib/basename-lgpl.gcda, 'basename-lgpl.c', 0.00, 20, 0.00, 12
+./lib/hard-locale.gcda, 'hard-locale.c', 100.00, 4, 100.00, 6
+./lib/safe-read.gcda, 'safe-read.c', 55.56, 9, 40.00, 10
+./lib/openat-safer.gcda, 'openat-safer.c', 50.00, 8, 100.00, 4
+./lib/opendirat.gcda, 'opendirat.c', 0.00, 10, 0.00, 4
+./lib/dfa.gcda, 'dfa.c', 33.39, 1674, 31.75, 1178
+./lib/xmalloc.gcda, 'xmalloc.c', 79.01, 81, 68.42, 76
+./lib/xmalloc.gcda, 'ialloc.h', 61.54, 13, 71.43, 14
+./lib/xmalloc.gcda, 'xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/sigsegv.gcda, 'sigsegv.c', 51.52, 99, 26.32, 38
+./lib/stackvma.gcda, 'stackvma.c', 51.82, 220, 63.33, 120
+./lib/getprogname.gcda, 'getprogname.c', 100.00, 2, 0.00, 0.00
+./lib/hash.gcda, 'hash.c', 15.74, 343, 17.53, 194
+./lib/hash.gcda, 'bitrotate.h', 0.00, 2, 0.00, 0.00
+./lib/i-ring.gcda, 'i-ring.c', 0.00, 30, 0.00, 8
+./lib/c-stack.gcda, 'c-stack.c', 19.05, 42, 25.00, 16
+./lib/mbchar.gcda, 'mbchar.h', 0.00, 15, 0.00, 6
+./lib/setlocale_null.gcda, 'setlocale_null.c', 57.14, 21, 50.00, 8
+./lib/exclude.gcda, 'exclude.c', 0.00, 243, 0.00, 155
+./lib/localcharset.gcda, 'localcharset.c', 0.00, 8, 0.00, 4
+./lib/close-stream.gcda, 'close-stream.c', 62.50, 8, 40.00, 10
+./lib/open-safer.gcda, 'open-safer.c', 0.00, 8, 0.00, 4
+./lib/closeout.gcda, 'closeout.c', 23.53, 17, 40.00, 10
+./lib/stripslash.gcda, 'stripslash.c', 0.00, 10, 0.00, 2
+./lib/mbrtowc.gcda, 'wchar.h', 100.00, 1, 100.00, 2
+./lib/mbrtowc.gcda, 'mbrtowc.c', 55.56, 9, 100.00, 6
+./lib/version-etc.gcda, 'version-etc.c', 0.00, 58, 0.00, 23
+./lib/argmatch.gcda, 'argmatch.c', 0.00, 51, 0.00, 30
+./lib/memchr2.gcda, 'memchr2.c', 32.56, 43, 10.00, 20
+./lib/fcntl.gcda, 'fcntl.c', 0.00, 51, 0.00, 22
+./lib/free.gcda, 'stdlib.h', 100.00, 1, 0.00, 0.00
+./lib/free.gcda, 'free.c', 100.00, 7, 0.00, 0.00
+./lib/cycle-check.gcda, 'cycle-check.c', 0.00, 13, 0.00, 12
+./lib/xalloc-die.gcda, 'xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/malloc/dynarray_resize.gcda, 'malloc/dynarray_resize.c', 0.00, 19, 0.00, 12
+./src/kwsearch.gcda, 'kwsearch.c', 0.00, 102, 0.00, 56
+./src/searchutils.gcda, 'searchutils.c', 5.63, 71, 3.03, 66
+./src/searchutils.gcda, 'search.h', 0.00, 3, 0.00, 12
+./src/searchutils.gcda, 'system.h', 0.00, 2, 0.00, 6
+./src/grep.gcda, 'grep.c', 29.13, 1198, 26.74, 965
+./src/grep.gcda, 'search.h', 0.00, 3, 0.00, 12
+./src/grep.gcda, 'system.h', 0.00, 2, 0.00, 10
+./src/grep.gcda, '../lib/c-ctype.h', 100.00, 2, 50.00, 4
+./src/kwset.gcda, 'kwset.c', 62.32, 414, 64.02, 353
+./src/kwset.gcda, 'system.h', 100.00, 2, 85.71, 14
+./src/dfasearch.gcda, 'dfasearch.c', 46.38, 276, 41.18, 170
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/grep
+total_no_of_statements, 10331
+total_statement_coverage_%, 24.37%
+total_no_of_branches, 7790
+total_branch_coverage_%, 19.97%

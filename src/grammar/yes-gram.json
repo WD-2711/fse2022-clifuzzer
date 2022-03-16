@@ -1,0 +1,17 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<string>*"
+    ],
+    "<other_option>": [
+        ""
+    ],
+    "<string>": [
+        " str"
+    ]
+}

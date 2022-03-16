@@ -1,0 +1,36 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./src/tr.gcda, 'src/tr.c', 38.43, 687, 42.40, 500
+./src/tr.gcda, 'lib/xbinary-io.h', 100.00, 2, 0.00, 0.00
+./src/tr.gcda, 'lib/binary-io.h', 100.00, 4, 0.00, 0.00
+./src/tr.gcda, 'src/system.h', 6.25, 16, 0.00, 22
+./lib/xstrtoumax.gcda, 'lib/xstrtol.c', 0.00, 69, 0.00, 88
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 0.00, 4, 0.00, 6
+./lib/fadvise.gcda, 'lib/fadvise.c', 85.71, 7, 100.00, 2
+./lib/free.gcda, 'lib/stdlib.h', 100.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 100.00, 7, 0.00, 0.00
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 0.00, 21, 0.00, 8
+./lib/quotearg.gcda, 'lib/quotearg.c', 22.22, 387, 28.26, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 60.53, 38, 60.71, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 100.00, 3, 60.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 28.57, 7, 66.67, 6
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 7.41, 81, 5.26, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/localcharset.gcda, 'lib/localcharset.c', 75.00, 8, 100.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 80.00, 10
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 60.00, 10
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/safe-read.gcda, 'lib/safe-read.c', 55.56, 9, 40.00, 10
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 0.00, 10, 0.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 1503
+total_statement_coverage_%, 43.25%
+total_no_of_branches, 1215
+total_branch_coverage_%, 27.44%

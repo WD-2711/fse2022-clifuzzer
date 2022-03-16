@@ -1,0 +1,33 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        ""
+    ],
+    "<other_option>": [
+        " -a",
+        " -s",
+        " -n",
+        " -r",
+        " -v",
+        " -m",
+        " -p",
+        " -i",
+        " -o",
+        " --all",
+        " --kernel-name",
+        " --sysname",
+        " --nodename",
+        " --kernel-release",
+        " --release",
+        " --kernel-version",
+        " --machine",
+        " --processor",
+        " --hardware-platform",
+        " --operating-system"
+    ]
+}

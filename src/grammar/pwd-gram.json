@@ -1,0 +1,17 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        ""
+    ],
+    "<other_option>": [
+        " -L",
+        " -P",
+        " --logical",
+        " --physical"
+    ]
+}

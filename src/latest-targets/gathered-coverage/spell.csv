@@ -1,0 +1,7 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./spell.gcda, 'spell.c', 80.39, 306, 81.62, 185
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/spell
+total_no_of_statements, 306
+total_statement_coverage_%, 80.39%
+total_no_of_branches, 185
+total_branch_coverage_%, 81.62%

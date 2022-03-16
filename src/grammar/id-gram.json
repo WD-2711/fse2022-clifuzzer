@@ -1,0 +1,33 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<users>?"
+    ],
+    "<other_option>": [
+        " -a",
+        " -g",
+        " -n",
+        " -r",
+        " -u",
+        " -z",
+        " -G",
+        " -Z",
+        " --context",
+        " --group",
+        " --groups",
+        " --name",
+        " --real",
+        " --user",
+        " --zero"
+    ],
+    "<users>": [
+        " ubuntu",
+        " lxd",
+        " root"
+    ]
+}

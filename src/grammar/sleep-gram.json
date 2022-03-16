@@ -1,0 +1,35 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<number>"
+    ],
+    "<other_option>": [
+        ""
+    ],
+    "<number>": [
+        " <digit>+(.<digit>+)?<suffix>?"
+    ],
+    "<digit>": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "<suffix>": [
+        "s",
+        "m",
+        "h",
+        "d"
+    ]
+}

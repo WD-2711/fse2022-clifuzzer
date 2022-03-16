@@ -1,0 +1,27 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        ""
+    ],
+    "<other_option>": [
+        " -d",
+        " -p str",
+        " -q",
+        " -t",
+        " -u",
+        " -V",
+        " --directory",
+        " --quiet",
+        " --dry-run",
+        " --suffix=str",
+        " --tmpdir<optional_str>?"
+    ],
+    "<optional_str>": [
+        "=str"
+    ]
+}

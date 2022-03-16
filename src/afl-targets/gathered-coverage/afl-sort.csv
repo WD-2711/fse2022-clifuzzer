@@ -1,0 +1,69 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./src/sort.gcda, 'src/sort.c', 27.48, 1812, 27.54, 1209
+./src/sort.gcda, 'src/system.h', 20.00, 30, 16.67, 60
+./lib/xstrtoumax.gcda, 'lib/xstrtol.c', 0.00, 69, 0.00, 88
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 100.00, 4, 100.00, 6
+./lib/fadvise.gcda, 'lib/fadvise.c', 85.71, 7, 100.00, 2
+./lib/obstack.gcda, 'lib/obstack.c', 0.00, 99, 0.00, 42
+./lib/umaxtostr.gcda, 'lib/anytostr.c', 0.00, 8, 0.00, 2
+./lib/randread.gcda, 'lib/randread.c', 0.00, 86, 0.00, 40
+./lib/free.gcda, 'lib/stdlib.h', 100.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 100.00, 7, 0.00, 0.00
+./lib/dtotimespec.gcda, 'lib/dtotimespec.c', 0.00, 15, 0.00, 6
+./lib/dtotimespec.gcda, 'lib/timespec.h', 0.00, 5, 0.00, 0.00
+./lib/xnanosleep.gcda, 'lib/xnanosleep.c', 0.00, 10, 0.00, 8
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 57.14, 21, 50.00, 8
+./lib/rand-isaac.gcda, 'lib/rand-isaac.c', 0.00, 46, 0.00, 8
+./lib/fd-safer.gcda, 'lib/fd-safer.c', 0.00, 8, 0.00, 2
+./lib/quotearg.gcda, 'lib/quotearg.c', 0.00, 387, 0.00, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 0.00, 38, 0.00, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 0.00, 3, 0.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 85.71, 7, 100.00, 6
+./lib/heap.gcda, 'lib/heap.c', 68.75, 48, 55.56, 18
+./lib/nanosleep.gcda, 'lib/nanosleep.c', 0.00, 21, 0.00, 8
+./lib/fd-safer-flag.gcda, 'lib/fd-safer-flag.c', 0.00, 8, 0.00, 2
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 24.69, 81, 13.16, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/md5.gcda, 'lib/md5.c', 0.00, 156, 0.00, 24
+./lib/localcharset.gcda, 'lib/localcharset.c', 0.00, 8, 0.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/fopen-safer.gcda, 'lib/fopen-safer.c', 0.00, 17, 0.00, 10
+./lib/mbswidth.gcda, 'lib/mbswidth.c', 0.00, 58, 0.00, 38
+./lib/xmemcoll.gcda, 'lib/xmemcoll.c', 27.78, 18, 50.00, 4
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 100.00, 10
+./lib/mkstemp-safer.gcda, 'lib/mkstemp-safer.c', 0.00, 4, 0.00, 0.00
+./lib/xstrtol-error.gcda, 'lib/xstrtol-error.c', 0.00, 25, 0.00, 6
+./lib/filevercmp.gcda, 'lib/filevercmp.c', 0.00, 78, 0.00, 98
+./lib/filevercmp.gcda, 'lib/c-ctype.h', 0.00, 9, 0.00, 40
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 60.00, 10
+./lib/posixver.gcda, 'lib/posixver.c', 55.56, 9, 25.00, 8
+./lib/readtokens0.gcda, 'lib/readtokens0.c', 0.00, 36, 0.00, 28
+./lib/fcntl.gcda, 'lib/fcntl.c', 0.00, 51, 0.00, 22
+./lib/uinttostr.gcda, 'lib/anytostr.c', 0.00, 8, 0.00, 2
+./lib/inttostr.gcda, 'lib/anytostr.c', 0.00, 12, 0.00, 6
+./lib/strnumcmp.gcda, 'lib/strnumcmp.c', 0.00, 2, 0.00, 0.00
+./lib/strnumcmp.gcda, 'lib/strnumcmp-in.h', 0.00, 112, 0.00, 138
+./lib/dup-safer.gcda, 'lib/dup-safer.c', 0.00, 2, 0.00, 0.00
+./lib/nproc.gcda, 'lib/nproc.c', 52.08, 48, 40.00, 40
+./lib/nproc.gcda, 'lib/c-ctype.h', 0.00, 4, 0.00, 6
+./lib/hash.gcda, 'lib/hash.c', 0.00, 343, 0.00, 194
+./lib/hash.gcda, 'lib/bitrotate.h', 0.00, 2, 0.00, 0.00
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/physmem.gcda, 'lib/physmem.c', 55.56, 18, 66.67, 12
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/pipe2.gcda, 'lib/pipe2.c', 0.00, 37, 0.00, 30
+./lib/argmatch.gcda, 'lib/argmatch.c', 0.00, 51, 0.00, 30
+./lib/dup-safer-flag.gcda, 'lib/dup-safer-flag.c', 0.00, 2, 0.00, 2
+./lib/memcoll.gcda, 'lib/memcoll.c', 56.67, 30, 71.43, 14
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 0.00, 10, 0.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 4113
+total_statement_coverage_%, 21.19%
+total_no_of_branches, 2840
+total_branch_coverage_%, 16.76%

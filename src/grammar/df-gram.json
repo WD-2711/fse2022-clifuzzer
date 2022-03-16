@@ -1,0 +1,151 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<files>*"
+    ],
+    "<other_option>": [
+        " -a",
+        " -B <B1>",
+        " -i",
+        " -F <F1>",
+        " -h",
+        " -H",
+        " -k",
+        " -l",
+        " -m",
+        " -P",
+        " -T",
+        " -t <t1>",
+        " -v",
+        " -x <x1>",
+        " --all",
+        " --block-size=<block-size1>",
+        " --inodes",
+        " --human-readable",
+        " --si",
+        " --local",
+        " --output<output1>?",
+        " --portability",
+        " --print-type",
+        " --sync",
+        " --no-sync",
+        " --total",
+        " --type=<type1>",
+        " --exclude-type=<exclude-type1>"
+    ],
+    "<files>": [
+        " FILE",
+        " FILE/HelloWorld.py",
+        " FILE/README",
+        " FILE/emptyfile",
+        " FILE/testopt",
+        " FILE/s0",
+        " FILE/s1",
+        " FILE/s2",
+        " FILE/s3",
+        " FILE/s4",
+        " FILE/s5",
+        " FILE/s6",
+        " FILE/s7",
+        " FILE/s8",
+        " FILE/s9",
+        " FILE/s10",
+        " FILE/s11",
+        " FILE/s12",
+        " FILE/s13",
+        " FILE/s14",
+        " FILE/s15",
+        " FILE/s16",
+        " FILE/s17",
+        " FILE/s18",
+        " FILE/s19",
+        " FILE/s20",
+        " FILE/s21",
+        " FILE/s22",
+        " FILE/s23",
+        " FILE/s24",
+        " FILE/s25",
+        " FILE/s26",
+        " FILE/s27",
+        " FILE/s28",
+        " FILE/s29",
+        " FILE/l0",
+        " FILE/l1",
+        " FILE/l2",
+        " FILE/l3",
+        " FILE/l4",
+        " FILE/l5",
+        " FILE/l6",
+        " FILE/l7",
+        " FILE/l8",
+        " FILE/l9",
+        " FILE/l10",
+        " FILE/l11",
+        " FILE/l12",
+        " FILE/l13",
+        " FILE/l14",
+        " FILE/l15",
+        " FILE/l16",
+        " FILE/l17",
+        " FILE/l18",
+        " FILE/l19",
+        " FILE/l20",
+        " FILE/l21",
+        " FILE/l22",
+        " FILE/l23",
+        " FILE/l24",
+        " FILE/l25",
+        " FILE/l26",
+        " FILE/l27",
+        " FILE/l28",
+        " FILE/l29",
+        " FILE/image.jpg",
+        " FILE/audio.wav",
+        " FILE/largeaudio.wav",
+        " FILE/E.coli",
+        " FILE/bible.txt",
+        " FILE/world192.txt"
+    ],
+    "<B1>": [
+        "human-readable",
+        "si"
+    ],
+    "<F1>": [
+        "zfs"
+    ],
+    "<t1>": [
+        "zfs"
+    ],
+    "<x1>": [
+        "zfs"
+    ],
+    "<block-size1>": [
+        "human-readable",
+        "si"
+    ],
+    "<output1>": [
+        "=source",
+        "=fstype",
+        "=size",
+        "=used",
+        "=avail",
+        "=pcent",
+        "=itotal",
+        "=iused",
+        "=iavail",
+        "=ipcent",
+        "=target",
+        "=file"
+    ],
+    "<type1>": [
+        "zfs"
+    ],
+    "<exclude-type1>": [
+        "zfs"
+    ]
+}

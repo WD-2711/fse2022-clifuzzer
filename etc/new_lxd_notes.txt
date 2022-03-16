@@ -1,0 +1,120 @@
+To install lxd
+	sudo apt-get install snapd
+	sudo snap install lxd
+-> lxd is installed in /snap/bin which is not updated in $PATH immediately, so logout and login again.
+
+If "lxd init" reports - "Error: Failed to connect to local LXD: Get "http://unix.socket/1.0": dial unix /var/snap/lxd/common/lxd/unix.socket: connect: permission denied",
+then run "sudo usermod --append --groups lxd <myusername>", preferably outside a running tmux window
+
+$ lxd init
+Would you like to use LXD clustering? (yes/no) [default=no]:
+Do you want to configure a new storage pool? (yes/no) [default=yes]:
+Name of the new storage pool [default=default]:
+Name of the storage backend to use (zfs, ceph, btrfs, dir, lvm) [default=zfs]:
+Create a new ZFS pool? (yes/no) [default=yes]:
+Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:
+Size in GB of the new loop device (1GB minimum) [default=5GB]: 20GB
+Would you like to connect to a MAAS server? (yes/no) [default=no]:
+Would you like to create a new local network bridge? (yes/no) [default=yes]:
+What should the new bridge be called? [default=lxdbr0]:
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+Would you like LXD to be available over the network? (yes/no) [default=no]:
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes] no
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]: yes
+config:
+  images.auto_update_interval: "0"
+networks:
+- config:
+    ipv4.address: auto
+    ipv6.address: auto
+  description: ""
+  name: lxdbr0
+  type: ""
+  project: default
+storage_pools:
+- config:
+    size: 4GB
+  description: ""
+  name: default
+  driver: zfs
+profiles:
+- config: {}
+  description: ""
+  devices:
+    eth0:
+      name: eth0
+      network: lxdbr0
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: default
+cluster: null
+
+
+	lxc remote list
+
+	lxc image list
+
+	lxc list
+
+	lxc launch ubuntu:20.04 clifuzzer
+
+In case one needs to reinitialize lxd -
+	https://blog.simos.info/how-to-initialize-lxd-again/
+	https://stackoverflow.com/a/61090583
+	lxd network delete lxdbr0
+
+Login command -
+	lxc exec clifuzzer -- su --login ubuntu
+
+# lxc image export clifuzzer .
+
+One time effort -
+	lxc exec clifuzzer -- sudo --login --user ubuntu echo "export GROFF_FONT_PATH=/usr/share/groff/1.22.4/font/" >> /home/ubuntu/.bashrc
+	lxc exec clifuzzer -- sudo --login --user ubuntu echo "export BISON_PKGDATADIR=~/fse2022-clifuzzer/src/latest-targets/bison/data/" >> /home/ubuntu/.bashrc
+
+	lxc exec clifuzzer -- apt-get update
+	lxc exec clifuzzer -- apt install python3-pip
+	lxc exec clifuzzer -- pip3 install fuzzingbook
+	lxc exec clifuzzer -- pip3 install markdown
+	lxc exec clifuzzer -- pip3 install graphviz
+
+	lxc exec clifuzzer -- apt install m4    		# needed for bison
+	lxc exec clifuzzer -- apt install libncurses-dev	# needed for less
+	lxc exec clifuzzer -- apt install texinfo		# needed for troff
+	lxc exec clifuzzer -- apt install -y netpbm		# needed for troff
+	lxc exec clifuzzer -- apt install -y ispell 		# needed for spell
+	lxc exec clifuzzer -- apt install -y libgmp-dev	# needed for latest gdb
+
+	# lxc exec clifuzzer -- sudo --login --user ubuntu whoami
+
+	# lxc exec clifuzzer -- sudo --login --user ubuntu git clone https://github.com/clifuzzer/fse2022-clifuzzer.git
+
+	lxc exec clifuzzer -- sudo --login --user ubuntu  -> This opens a bash shell inside the container
+
+	echo "export GROFF_FONT_PATH=/usr/share/groff/1.22.4/font/" >> /home/ubuntu/.bashrc
+	git clone https://github.com/clifuzzer/fse2022-clifuzzer.git
+	cd fse2022-clifuzzer/src
+	./setup.sh
+
+After this, to run our fuzzer, just use the run-cf-cmd.py command. Grammars are in the grammars/ directory.
+
+	python3 run-cf-cmd.py --help
+
+If lxd is unable to dump core, say for AFL, ensure /proc/sys/kernel/core_pattern in the host OS doesn't point to apport by the following steps:
+(for reference - http://lost-and-found-narihiro.blogspot.com/2017/07/ubuntu-1604-enable-core-dump-in-lxd.html, 
+ https://stackoverflow.com/questions/29172874/where-are-core-files-stored-in-a-lxc-container)
+On host system (not inside the container)
+
+   $ cat /proc/sys/kernel/core_pattern
+   |/usr/share/apport/apport %p %s %c %d %P %E
+   $ sudo sh -c "echo /tmp/core.%e.%p.%t > /proc/sys/kernel/core_pattern"
+   $ cat /proc/sys/kernel/core_pattern
+   /tmp/core.%e.%p.%t
+
+https://discuss.linuxcontainers.org/t/enable-core-dump-in-lxd-container/3537/17
+
+export BISON_PKGDATADIR=~/fse2022-clifuzzer/src/latest-targets/bison/data/ (to local paths)

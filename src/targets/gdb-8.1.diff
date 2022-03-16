@@ -1,0 +1,21 @@
+--- gdb/nat/linux-ptrace.h	2018-01-31 02:58:50.000000000 +0000
++++ gdb/nat/linux-ptrace-orig.h	2021-05-06 20:36:05.007644837 +0000
+@@ -21,6 +21,7 @@
+ struct buffer;
+
+ #include "nat/gdb_ptrace.h"
++#include "gdb_wait.h"
+
+ #ifdef __UCLIBC__
+ #if !(defined(__UCLIBC_HAS_MMU__) || defined(__ARCH_HAS_MMU__))
+--- gdb/nat/linux-ptrace.c	2018-01-31 02:58:50.000000000 +0000
++++ gdb/nat/linux-ptrace-orig.c	2021-05-06 20:36:01.659740458 +0000
+@@ -21,8 +21,6 @@
+ #include "linux-procfs.h"
+ #include "linux-waitpid.h"
+ #include "buffer.h"
+-#include "gdb_wait.h"
+-#include "gdb_ptrace.h"
+ #ifdef HAVE_SYS_PROCFS_H
+ #include <sys/procfs.h>
+ #endif

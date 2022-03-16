@@ -1,0 +1,47 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./src/od.gcda, 'src/od.c', 83.88, 763, 93.42, 486
+./src/od.gcda, 'src/system.h', 36.36, 33, 33.33, 18
+./src/od.gcda, 'lib/xbinary-io.h', 0.00, 1, 0.00, 0.00
+./lib/xstrtoumax.gcda, 'lib/xstrtol.c', 79.71, 69, 90.91, 88
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 0.00, 4, 0.00, 6
+./lib/vprintf.gcda, 'lib/vprintf.c', 100.00, 2, 0.00, 0.00
+./lib/fseterr.gcda, 'lib/fseterr.c', 0.00, 3, 0.00, 0.00
+./lib/free.gcda, 'lib/stdlib.h', 100.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 100.00, 7, 0.00, 0.00
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 0.00, 21, 0.00, 8
+./lib/printf-args.gcda, 'lib/printf-args.c', 26.67, 75, 93.10, 29
+./lib/quotearg.gcda, 'lib/quotearg.c', 20.93, 387, 27.64, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 60.53, 38, 60.71, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 100.00, 3, 60.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 85.71, 7, 100.00, 6
+./lib/printf-parse.gcda, 'lib/printf-parse.c', 43.56, 225, 41.99, 231
+./lib/printf-parse.gcda, 'lib/xsize.h', 0.00, 3, 0.00, 12
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 29.63, 81, 15.79, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/localcharset.gcda, 'lib/localcharset.c', 75.00, 8, 100.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/xprintf.gcda, 'lib/xprintf.c', 45.83, 24, 25.00, 8
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 100.00, 10
+./lib/dtoastr.gcda, 'lib/ftoastr.c', 100.00, 24, 100.00, 14
+./lib/ldtoastr.gcda, 'lib/ftoastr.c', 100.00, 24, 100.00, 14
+./lib/xstrtol-error.gcda, 'lib/xstrtol-error.c', 84.00, 25, 100.00, 6
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 80.00, 10
+./lib/vfprintf.gcda, 'lib/vfprintf.c', 57.14, 21, 80.00, 10
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/ftoastr.gcda, 'lib/ftoastr.c', 100.00, 24, 100.00, 14
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/vasnprintf.gcda, 'lib/vasnprintf.c', 43.70, 254, 37.81, 283
+./lib/vasnprintf.gcda, 'lib/xsize.h', 71.43, 7, 40.00, 30
+./lib/argmatch.gcda, 'lib/argmatch.c', 25.49, 51, 26.67, 30
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 66.67, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 90.00, 10, 100.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 2337
+total_statement_coverage_%, 52.29%
+total_no_of_branches, 1866
+total_branch_coverage_%, 43.57%

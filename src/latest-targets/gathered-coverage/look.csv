@@ -1,0 +1,9 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./misc-utils/look.gcda, 'misc-utils/look.c', 84.92, 126, 92.94, 85
+./misc-utils/look.gcda, 'include/closestream.h', 55.00, 20, 70.00, 20
+./misc-utils/look.gcda, 'include/xalloc.h', 80.00, 5, 100.00, 2
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/util-linux
+total_no_of_statements, 151
+total_statement_coverage_%, 73.31%
+total_no_of_branches, 107
+total_branch_coverage_%, 87.65%

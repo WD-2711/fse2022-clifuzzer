@@ -1,0 +1,18 @@
+# run this once before you run the fuzzer on MacOS
+
+CC=gcc
+CFLAGS=-shared -fPIC -ldl
+
+all: mygetopt.dylib myopen.dylib mystat.dylib mystrcmp.dylib
+
+mygetopt.dylib: 
+	$(CC) $(CFLAGS) mygetopt.c -o $@
+myopen.dylib:
+	$(CC) $(CFLAGS) myopen.c -o $@
+mystat.dylib:
+	$(CC) $(CFLAGS) mystat.c -o $@
+mystrcmp.dylib:
+	$(CC) $(CFLAGS) mystrcmp.c -o $@
+
+clean: 
+	-rm -rf *.dylib

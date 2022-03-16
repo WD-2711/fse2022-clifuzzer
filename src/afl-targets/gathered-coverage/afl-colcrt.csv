@@ -1,0 +1,8 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./text-utils/colcrt.gcda, 'text-utils/colcrt.c', 75.68, 148, 85.71, 77
+./text-utils/colcrt.gcda, 'include/closestream.h', 55.00, 20, 70.00, 20
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/util-linux
+total_no_of_statements, 168
+total_statement_coverage_%, 65.34%
+total_no_of_branches, 97
+total_branch_coverage_%, 77.85%

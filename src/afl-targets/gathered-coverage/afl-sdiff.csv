@@ -1,0 +1,42 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./src/sdiff.gcda, 'sdiff.c', 6.18, 534, 4.91, 285
+./lib/progname.gcda, 'progname.c', 62.50, 16, 60.00, 10
+./lib/version-etc.gcda, 'version-etc.c', 0.00, 58, 0.00, 23
+./lib/xalloc-die.gcda, 'xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/mbsstr.gcda, 'string.h', 0.00, 1, 0.00, 0.00
+./lib/mbsstr.gcda, 'mbsstr.c', 0.00, 137, 0.00, 134
+./lib/mbsstr.gcda, 'str-kmp.h', 0.00, 39, 0.00, 20
+./lib/mbrtowc.gcda, 'wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/localcharset.gcda, 'localcharset.c', 0.00, 8, 0.00, 4
+./lib/propername.gcda, 'propername.c', 0.00, 114, 0.00, 94
+./lib/xstdopen.gcda, 'xstdopen.c', 80.00, 5, 100.00, 2
+./lib/c-stack.gcda, 'c-stack.c', 19.05, 42, 25.00, 16
+./lib/trim.gcda, 'trim.c', 0.00, 41, 0.00, 60
+./lib/mbslen.gcda, 'string.h', 0.00, 1, 0.00, 0.00
+./lib/mbslen.gcda, 'mbslen.c', 0.00, 8, 0.00, 6
+./lib/striconv.gcda, 'striconv.c', 0.00, 140, 0.00, 68
+./lib/setlocale_null.gcda, 'setlocale_null.c', 0.00, 21, 0.00, 8
+./lib/free.gcda, 'stdlib.h', 0.00, 1, 0.00, 0.00
+./lib/free.gcda, 'free.c', 0.00, 7, 0.00, 0.00
+./lib/basename-lgpl.gcda, 'basename-lgpl.c', 0.00, 20, 0.00, 12
+./lib/hard-locale.gcda, 'hard-locale.c', 0.00, 4, 0.00, 6
+./lib/sigsegv.gcda, 'sigsegv.c', 51.52, 99, 26.32, 38
+./lib/stdopen.gcda, 'stdopen.c', 33.33, 12, 28.57, 14
+./lib/xmalloc.gcda, 'xmalloc.c', 5.19, 77, 2.63, 76
+./lib/xmalloc.gcda, 'ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'xalloc.h', 0.00, 6, 0.00, 2
+./lib/getprogname.gcda, 'getprogname.c', 100.00, 2, 0.00, 0.00
+./lib/c-strcasecmp.gcda, 'c-strcasecmp.c', 0.00, 14, 0.00, 10
+./lib/c-strcasecmp.gcda, 'c-ctype.h', 0.00, 4, 0.00, 4
+./lib/strnlen1.gcda, 'strnlen1.c', 0.00, 4, 0.00, 2
+./lib/mbchar.gcda, 'mbchar.h', 0.00, 15, 0.00, 6
+./lib/xstriconv.gcda, 'xstriconv.c', 0.00, 15, 0.00, 12
+./lib/stackvma.gcda, 'stackvma.c', 52.27, 220, 63.33, 120
+./lib/fcntl.gcda, 'fcntl.c', 23.53, 51, 27.27, 22
+./lib/malloca.gcda, 'malloca.c', 0.00, 19, 0.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/diffutils
+total_no_of_statements, 1761
+total_statement_coverage_%, 12.04%
+total_no_of_branches, 1084
+total_branch_coverage_%, 9.39%

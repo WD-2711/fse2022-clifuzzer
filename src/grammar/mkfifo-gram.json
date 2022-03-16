@@ -1,0 +1,29 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<files>"
+    ],
+    "<other_option>": [
+        " -m str",
+        " -Z",
+        " --context<optional_str>?",
+        " --mode=str"
+    ],
+    "<files>": [
+        " FILE/pipe1",
+        " FILE/image.jpg",
+        " FILE/audio.wav",
+        " FILE/largeaudio.wav",
+        " FILE/E.coli",
+        " FILE/bible.txt",
+        " FILE/world192.txt"
+    ],
+    "<optional_str>": [
+        "=str"
+    ]
+}

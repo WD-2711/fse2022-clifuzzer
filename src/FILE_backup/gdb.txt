@@ -1,0 +1,3 @@
+file ./FILE_backup/testopt
+r
+q

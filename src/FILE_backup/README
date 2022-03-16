@@ -1,0 +1,5 @@
+# This directory contains files that can be used as inputs to the tool during fuzzing
+
+There will be backup directory called FILE_backup which will be a copy of the same files,
+
+to be used when the files or any particular details of it are changed.

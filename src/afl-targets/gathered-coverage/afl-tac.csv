@@ -1,0 +1,49 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./src/tac.gcda, 'src/tac.c', 47.41, 270, 54.32, 162
+./src/tac.gcda, 'lib/xbinary-io.h', 50.00, 2, 0.00, 0.00
+./src/tac.gcda, 'lib/binary-io.h', 100.00, 4, 0.00, 0.00
+./src/tac.gcda, 'src/system.h', 0.00, 21, 0.00, 12
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 0.00, 4, 0.00, 6
+./lib/free.gcda, 'lib/stdlib.h', 0.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 0.00, 7, 0.00, 0.00
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 0.00, 21, 0.00, 8
+./lib/fd-safer.gcda, 'lib/fd-safer.c', 0.00, 8, 0.00, 2
+./lib/quotearg.gcda, 'lib/quotearg.c', 0.00, 387, 0.00, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 0.00, 38, 0.00, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 0.00, 3, 0.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 28.57, 7, 66.67, 6
+./lib/regex.gcda, 'lib/regexec.c', 0.00, 1520, 0.00, 1268
+./lib/regex.gcda, 'lib/regex_internal.h', 0.00, 35, 0.00, 48
+./lib/regex.gcda, 'lib/regcomp.c', 0.00, 1369, 0.00, 1020
+./lib/regex.gcda, 'lib/regex_internal.c', 0.00, 817, 0.00, 628
+./lib/regex.gcda, 'lib/malloc/dynarray-skeleton.c', 0.00, 34, 0.00, 18
+./lib/regex.gcda, 'lib/malloc/dynarray.h', 0.00, 2, 0.00, 0.00
+./lib/fd-safer-flag.gcda, 'lib/fd-safer-flag.c', 0.00, 8, 0.00, 2
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 9.88, 81, 5.26, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/localcharset.gcda, 'lib/localcharset.c', 0.00, 8, 0.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/basename-lgpl.gcda, 'lib/basename-lgpl.c', 0.00, 20, 0.00, 12
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 80.00, 10
+./lib/mkstemp-safer.gcda, 'lib/mkstemp-safer.c', 0.00, 4, 0.00, 0.00
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 60.00, 10
+./lib/fcntl.gcda, 'lib/fcntl.c', 0.00, 51, 0.00, 22
+./lib/dup-safer.gcda, 'lib/dup-safer.c', 0.00, 2, 0.00, 0.00
+./lib/filenamecat-lgpl.gcda, 'lib/filenamecat-lgpl.c', 0.00, 22, 0.00, 14
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/dup-safer-flag.gcda, 'lib/dup-safer-flag.c', 0.00, 2, 0.00, 2
+./lib/safe-read.gcda, 'lib/safe-read.c', 55.56, 9, 40.00, 10
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 0.00, 10, 0.00, 8
+./lib/malloc/dynarray_resize.gcda, 'lib/malloc/dynarray_resize.c', 0.00, 19, 0.00, 12
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 4928
+total_statement_coverage_%, 16.49%
+total_no_of_branches, 3825
+total_branch_coverage_%, 11.31%

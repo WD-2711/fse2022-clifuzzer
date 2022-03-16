@@ -1,0 +1,49 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<command>"
+    ],
+    "<other_option>": [
+        " -i <mode>",
+        " -o <mode>",
+        " -e <mode>",
+        " --input=<mode>",
+        " --output=<mode>",
+        " --error=<mode>"
+    ],
+    "<mode>": [
+        "L",
+        "0",
+        "<int><unit>?"
+    ],
+    "<int>": [
+        "<digit>+"
+    ],
+    "<digit>": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "<unit>": [
+        "b",
+        "K",
+        "KB"
+    ],
+    "<command>": [
+        " targets/coreutils/src/du",
+        " targets/coreutils/src/make-prime-list 100000",
+        " targets/coreutils/src/cat"
+    ]
+}

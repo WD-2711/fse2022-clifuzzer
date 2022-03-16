@@ -1,0 +1,17 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./lib/number.gcda, 'number.c', 59.53, 771, 54.41, 544
+./bc/warranty.gcda, 'warranty.c', 0.00, 12, 0.00, 0.00
+./bc/load.gcda, 'load.c', 86.42, 162, 97.40, 77
+./bc/util.gcda, 'util.c', 72.98, 359, 71.43, 168
+./bc/bc.gcda, 'bc.c', 75.61, 328, 95.28, 212
+./bc/bc.gcda, '../../bc/bc.y', 59.20, 348, 82.78, 151
+./bc/storage.gcda, 'storage.c', 33.54, 483, 24.77, 218
+./bc/scan.gcda, '../../bc/scan.l', 93.00, 100, 95.83, 48
+./bc/scan.gcda, 'scan.c', 59.95, 397, 69.30, 228
+./bc/execute.gcda, 'execute.c', 26.33, 433, 41.39, 244
+./bc/main.gcda, 'main.c', 55.88, 136, 66.67, 60
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/bc
+total_no_of_statements, 3529
+total_statement_coverage_%, 56.59%
+total_no_of_branches, 1950
+total_branch_coverage_%, 63.57%

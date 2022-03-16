@@ -1,0 +1,22 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<variable>*"
+    ],
+    "<other_option>": [
+        " -i",
+        " -u str",
+        " -0",
+        " --null"
+    ],
+    "<variable>": [
+        " MAIL",
+        " PWD",
+        " OLDPWD"
+    ]
+}

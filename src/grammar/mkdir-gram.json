@@ -1,0 +1,62 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        "<files>"
+    ],
+    "<other_option>": [
+        " -p",
+        " -m <int>",
+        " -v",
+        " -Z",
+        " --context<optional_str>?",
+        " --mode=<int>",
+        " --parents",
+        " --verbose"
+    ],
+    "<files>": [
+        " FILE/emptydir",
+        " FILE/image.jpg",
+        " FILE/audio.wav",
+        " FILE/largeaudio.wav",
+        " FILE/E.coli",
+        " FILE/bible.txt",
+        " FILE/world192.txt"
+    ],
+    "<decimal-int>": [
+        "<non-zero-digit><digit>*"
+    ],
+    "<digit>": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "<non-zero-digit>": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "<int>": [
+        "<decimal-int>"
+    ],
+    "<optional_str>": [
+        "=str"
+    ]
+}

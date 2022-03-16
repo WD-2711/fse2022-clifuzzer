@@ -1,0 +1,17 @@
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./lib/.libs/libcommon_la-strutils.gcda, 'lib/strutils.c', 6.19, 549, 7.33, 546
+./lib/.libs/libcommon_la-strutils.gcda, 'include/strutils.h', 0.00, 6, 0.00, 4
+./lib/.libs/libcommon_la-mbsalign.gcda, 'lib/mbsalign.c', 14.03, 278, 13.21, 212
+./lib/.libs/libcommon_la-strv.gcda, 'lib/strv.c', 8.78, 205, 8.77, 114
+./lib/.libs/libcommon_la-ttyutils.gcda, 'lib/ttyutils.c', 26.98, 63, 20.69, 58
+./text-utils/column-column.gcda, 'text-utils/column.c', 72.61, 471, 83.69, 282
+./text-utils/column-column.gcda, 'include/closestream.h', 55.00, 20, 70.00, 20
+./text-utils/column-column.gcda, 'include/optutils.h', 96.43, 28, 92.86, 28
+./text-utils/column-column.gcda, 'include/cctype.h', 0.00, 2, 0.00, 2
+./text-utils/column-column.gcda, 'include/strutils.h', 100.00, 4, 100.00, 2
+./text-utils/column-column.gcda, 'include/xalloc.h', 66.67, 12, 66.67, 6
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/util-linux
+total_no_of_statements, 1638
+total_statement_coverage_%, 40.61%
+total_no_of_branches, 1274
+total_branch_coverage_%, 42.11%

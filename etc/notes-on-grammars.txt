@@ -1,0 +1,333 @@
+Notes and observations:
+This note focusses mostly on the binaries within the coreutils package.
+
+- We ignore the two options - "help" and "version", present in almost all the binaries in the grammar, because they don't help fuzz the program. Most programs exit/return the moment they see either of these two options.
+
+- For all the grammars, " str" works as a placeholder for any random input. We replace this with one during fuzzing.
+
+- The grammars have been preserved in json syntax in the extended Backus-Naur form (eBNF).
+    The form <symbol>? indicates that <symbol> is optional – that is, it can occur 0 or 1 times.
+    The form <symbol>+ indicates that <symbol> can occur 1 or more times repeatedly.
+    The form <symbol>* indicates that <symbol> can occur 0 or more times. (In other words, it is an optional repetition.)
+These can be converted into the standard Backus-Naur form (BNF) by the convert_ebnf_grammar command in the fuzzingbook tool (fuzzingbook.org) which can be included as - "from fuzzingbook.Grammars import convert_ebnf_grammar"
+
+- Coreutils binaries that don't use getopt at all - echo false make-prime-list printf test true.
+
+- Coreutils binaries that take only the " --help" and " --version" options: cksum dd expr groups hostid link logname nohup sleep tsort unlink uptime users whoami yes. Of these, some, like dd, may take operands but they aren't handled by getopt.
+
+- Coreutils binaries that don't have any options that take in any parameters - cat dircolors dirname factor id md5sum pathchk pinky pwd readlink rmdir sha1sum sha224sum sha256sum sha384sum sha512sum sum sync tr tty uname who.
+
+- Coreutils binaries that have options which take in values (" str") which can be fuzzed - b2sum base32 base64 basename basenc chcon chgrp chmod chown comm cp csplit cut date df dir du env expand fmt fold ginstall head join ln ls mkdir mkfifo mknod mktemp mv nice nl nproc numfmt od paste pr printenv ptx realpath rm runcon seq shred shuf sort split stat stdbuf stty tac tail tee timeout touch truncate unexpand uniq vdir wc
+
+- Other coreutils binaries we won't be considering to mine grammars from and the reasons why - arch, coreutils, getlimits, hostname.
+    arch -> not compiled and built by coreutils by default. only has hv options
+    coreutils ->  not compiled and builtby coreutils by default. Complex grammar. Can be considered later.
+    getlimits ->  only used by coreutils internally
+    hostname ->  not compiled and built by coreutils by default. only has hv options
+
+- binaries that need sorted files - comm join.
+
+- binaries that work on linked files - link readlink unlink ln.
+
+- binaries that need linked files - readlink unlink.
+
+- binaries that need a directory to fuzz - rmdir
+
+- binaries that work on a pipe file - mkfifo mknod (mknod can also work on other types of files, but not considered in the fuzzing tool).
+
+- binaries that generate lots of extra files - csplit, shuf (and maybe a couple more). shuf really uses up all space, so I removing that from the fuzzing list for now.
+
+Observations on specific grammars -
+
+- id: The grammar should take one or none users. It currently has a user named " ubuntu" which is the username used in the lxd container right now. Can be replaced with the appropriate username later on.
+
+- make-prime-list: takes in only one argument (no options at all).
+
+- dd: has its own manual parsing rules, for its operands. uses getopt only for "help" and "version".
+
+- chown: can't change the owner of a file even if I am the owner without sudo. But can change the group of a file as long as I am a member of the group. The grammar is written accordingly.
+
+Notes on return values-
+When the input parameters of any tool that outputs on the terminal shell (such as tee or cat), has a redirection ('>') or pipe ('|') character in the fuzzed string, then (I believe) that is taken over by the shell, and the shell returns a 127 when it doesn't find the first argument of the post redirection/piped part in the PATH variable or locally.
+
+env, split, nice and timeout return 125 if the program itself fails and it needs to die/exit. Tools which invoke other commands such as env, timeout, stdbuf, nice exit with the following values -
+
+Few binaries in coreutils such as printenv, env, split, stdbuf, and timeout returned values other than 0 or 1, which have been noted below (along with reasons, for future reference)-
+    EXIT_TIMEDOUT = 124, /* Time expired before child completed.  */ -> used by timeout
+    EXIT_CANCELED = 125, /* Internal error prior to exec attempt.  */ -> used by chroot, env, nice, nohup, stdbuf, timeout. (Currently observed in env, nice, stdbuf.)
+    EXIT_CANNOT_INVOKE = 126, /* Program located, but not usable.  */ -> used by chroot, env, nice, nohup, runcon, stdbuf, timeout
+    EXIT_ENOENT = 127 /* Could not find program to exec.  */ -> used by chroot, env, nice, nohup, runcon, stdbuf, timeout (indirectly by split. refer below.) (Currently observed in env and split.)
+
+- printenv: returns "2", which is its exit status for any abnormality. This includes a "-i" option that it has in its getopt shortoptions but it doesn't parse it, which lets it fall to the default case, which exits with status "2".
+
+- split: The "--filter" option passes its variable to bash, and bash returns 127. I can't say I fully understand why split needs to do this.
+examples of cases -
+[1283, "c-lib/coreutils/src/split --additional-suffix=ç×¾±ÿS'Ã\x13[\x80¹sÉ=mvh&htñ]\x02íì\x88lfR --filter=Ï~nRA:!¾mT-Ï\ni3Ã\\\x90\x838¿\x0c¶w/$^w%\x12 FILE/HelloWorld.py", 127]
+[2777, 'c-lib/coreutils/src/split --filter=TuhÞ9©â;2Í~M\xa0\x04\n\x04AÆæZmJ\x11VÎ¸ºÙ\x8e\x9d -1 -x FILE/testopt', 127]
+There are also cases when bash returns 0 and not anything else with this. Examples -
+[2993, 'c-lib/coreutils/src/split --filter=\x89qdl°p×\x96¤\x1fÑ»\x9amC.gÆ\x88ÀOnAÎÅ\x01S#y\x8b FILE/emptyfile', 0]
+[2021, 'c-lib/coreutils/src/split --filter=Ìò`Âc¿ý^¯\x16Û\x99£±¯ó<Hñ\x83Ý\x99Ù\x1e\x91Êù÷\x04× FILE/testopt', 1]
+[1907, 'c-lib/coreutils/src/split --unbuffered --filter=C²ðéTr\x96\x0b\x01´#\x7f¡N`Ây\x93\x18±EÊüq\x12}\x06\x95~, -9 FILE/HelloWorld.py', 1]
+
+- env: Env returns 125 and 127 on some executions. It returned 127 whenever -S (equivalent to --split-string) is a parameter. Not fully sure why. I think it returns 125 whenever 'env' fails.
+
+- stdbuf: stdbuf returns 125 if 'stdbuf' itself fails.
+
+- timeout: timeout returns 125 if 'timeout' itself fails.
+
+- nice: returns 125 if the provided niceness value is not within an integer range.
+
+
+All coreutils utilities divided into different categories -
+
+coreutils_binaries = {"b2sum",
+                        "base32",
+                        "base64",
+                        "basename",
+                        "basenc",
+                        "cat",
+                        "chcon",
+                        "chgrp",
+                        "chmod",
+                        "chown",
+                        "chroot",
+                        "cksum",
+                        "comm",
+                        "cp",
+                        "csplit",
+                        "cut",
+                        "date",
+                        "dd",
+                        "df",
+                        "dir",
+                        "dircolors",
+                        "dirname",
+                        "du",
+                        "echo",
+                        "env",
+                        "expand",
+                        "expr",
+                        "factor",
+                        "false",
+                        "fmt",
+                        "fold",
+                        "getlimits",
+                        "ginstall",
+                        "groups",
+                        "head",
+                        "hostid",
+                        "id",
+                        "join",
+                        "kill",
+                        "link",
+                        "ln",
+                        "logname",
+                        "ls",
+                        "make-prime-list",
+                        "md5sum",
+                        "mkdir",
+                        "mkfifo",
+                        "mknod",
+                        "mktemp",
+                        "mv",
+                        "nice",
+                        "nl",
+                        "nohup",
+                        "nproc",
+                        "numfmt",
+                        "od",
+                        "paste",
+                        "pathchk",
+                        "pinky",
+                        "pr",
+                        "printenv",
+                        "printf",
+                        "ptx",
+                        "pwd",
+                        "readlink",
+                        "realpath",
+                        "rm",
+                        "rmdir",
+                        "runcon",
+                        "seq",
+                        "sha1sum",
+                        "sha224sum",
+                        "sha256sum",
+                        "sha384sum",
+                        "sha512sum",
+                        "shred",
+                        "shuf",
+                        "sleep",
+                        "sort",
+                        "split",
+                        "stat",
+                        "stdbuf",
+                        "stty",
+                        "sum",
+                        "sync",
+                        "tac",
+                        "tail",
+                        "tee",
+                        "test",
+                        "timeout",
+                        "touch",
+                        "tr",
+                        "true",
+                        "truncate",
+                        "tsort",
+                        "tty",
+                        "uname",
+                        "unexpand",
+                        "uniq",
+                        "unlink",
+                        "uptime",
+                        "users",
+                        "vdir",
+                        "wc",
+                        "who",
+                        "whoami",
+                        "yes"}
+
+no_str_coreutils_binaries = {"cat",
+                            "dircolors",
+                            "dirname",
+                            "factor",
+                            "id",
+                            "md5sum",
+                            "pathchk",
+                            "pinky",
+                            "pwd",
+                            "readlink",
+                            "rmdir",
+                            "sha1sum",
+                            "sha224sum",
+                            "sha256sum",
+                            "sha384sum",
+                            "sha512sum",
+                            "sum",
+                            "sync",
+                            "tr",
+                            "tty",
+                            "uname",
+                            "who"}
+
+only_hv_coreutils_binaries =   {"cksum",
+                                "dd",
+                                "expr",
+                                "groups",
+                                "hostid",
+                                "link",
+                                "logname",
+                                "nohup",
+                                "sleep",
+                                "tsort",
+                                "unlink",
+                                "uptime",
+                                "users",
+                                "whoami",
+                                "yes"}
+
+no_getopt_coreutils_binaries = {"echo",
+                                "false",
+                                "make-prime-list",
+                                "printf",
+                                "test",
+                                "true"}
+
+skipped_coreutils_binaries =   {"arch", # not compiled by coreutils by default. only has hv options
+                                "chroot", # seems not to be straightforward to fuzz, has multiple requirements.
+                                "coreutils", # not compiled by coreutils by default. Complex grammar. Can be considered later.
+                                "getlimits", # only used by coreutils internally
+                                "hostname", # not compiled by coreutils by default. only has hv options
+                                "shuf", # generates too many files and eat up all the space. skipping for now.
+                                "kill"} # not sure entirely how to fuzz this since pid"s are randomly assigned.
+
+# random_fuzzable_coreutils_binaries and file_binaries together form our target set of fuzzable utilities.
+
+random_fuzzable_coreutils_binaries={"b2sum",# random fuzzable means options take values and we can fuzz these values.
+                                    "base32",
+                                    "base64",
+                                    "basename",
+                                    "basenc",
+                                    "chcon", #possibly needs SELinux context to run successfully, I think. Not sure if the <context> rule in grammar should be "?" or not. Refer https://access.redhat.com/solutions/1974503
+                                    "chgrp",
+                                    "chmod",
+                                    "chown",
+                                    "comm",
+                                    "csplit",
+                                    "cut",
+                                    "date",
+                                    "df",
+                                    "du",
+                                    "env",
+                                    "expand",
+                                    "fmt",
+                                    "fold",
+                                    "ginstall",
+                                    "head",
+                                    "join",
+                                    "nice",
+                                    "nl",
+                                    "numfmt",
+                                    "od",
+                                    "paste",
+                                    "pr",
+                                    "printenv",
+                                    "realpath",
+                                    "rm",
+                                    "runcon",
+                                    "seq",
+                                    "sort",
+                                    "split",
+                                    "stat",
+                                    "stdbuf",
+                                    "stty",
+                                    "tac",
+                                    "tail",
+                                    "tee",
+                                    "timeout",
+                                    "touch",
+                                    "truncate",
+                                    "unexpand",
+                                    "uniq",
+                                    "vdir",
+                                    "wc"}
+
+file_binaries = {# "shuf", shuf generates too many files and eat up all the space. not fuzzing for now.
+                "b2sum",
+                "base32",
+                "base64",
+                "basenc",
+                "cat",
+                "cksum",
+                "comm",
+                "csplit",
+                "cut",
+                "expand",
+                "fmt",
+                "fold",
+                "head",
+                "join",
+                "md5sum",
+                "nl",
+                "od",
+                "paste",
+                "pr",
+                "sha1sum",
+                "sha224sum",
+                "sha256sum",
+                "sha384sum",
+                "sha512sum",
+                "sort",
+                "split",
+                "sum",
+                "tac",
+                "tail",
+                "tsort",
+                "unexpand",
+                "uniq",
+                "users",
+                "wc",
+                "who"}
+
+The binary "look" from the "util-linux" package only seems to work on a file if the file ends with a newline. otherwise it doesn't work. This makes fuzzing it slightly problematic with our generated files.

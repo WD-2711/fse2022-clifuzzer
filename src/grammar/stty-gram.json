@@ -1,0 +1,19 @@
+{
+    "<start>": [
+        "<option><arguments>"
+    ],
+    "<option>": [
+        "(<other_option>)*"
+    ],
+    "<arguments>": [
+        ""
+    ],
+    "<other_option>": [
+        " -a",
+        " -g",
+        " -F str",
+        " --all",
+        " --save",
+        " --file=str"
+    ]
+}

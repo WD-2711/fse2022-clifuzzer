@@ -1,0 +1,45 @@
+The subprocess gcov call returned 0 with the following stderr:
+./afl-comm.gcno:cannot open notes file
+./afl-comm.gcda:not a gcov data file
+
+filepath, filename, statement coverage %, total statements, branch coverage %, total branches
+./afl-comm.gcda, cov returned a non list:, <class 'str'>, NaN, NaN, Nan
+./src/comm.gcda, 'src/comm.c', 50.00, 152, 66.67, 81
+./src/comm.gcda, 'src/system.h', 0.00, 15, 0.00, 12
+./lib/hard-locale.gcda, 'lib/hard-locale.c', 100.00, 4, 100.00, 6
+./lib/fadvise.gcda, 'lib/fadvise.c', 85.71, 7, 100.00, 2
+./lib/umaxtostr.gcda, 'lib/anytostr.c', 0.00, 8, 0.00, 2
+./lib/free.gcda, 'lib/stdlib.h', 0.00, 1, 0.00, 0.00
+./lib/free.gcda, 'lib/free.c', 0.00, 7, 0.00, 0.00
+./lib/memcmp2.gcda, 'lib/memcmp2.c', 0.00, 5, 0.00, 2
+./lib/setlocale_null.gcda, 'lib/setlocale_null.c', 57.14, 21, 50.00, 8
+./lib/quotearg.gcda, 'lib/quotearg.c', 0.00, 387, 0.00, 322
+./lib/quotearg.gcda, 'lib/c-strcaseeq.h', 0.00, 38, 0.00, 56
+./lib/quotearg.gcda, 'lib/c-ctype.h', 0.00, 3, 0.00, 20
+./lib/fflush.gcda, 'lib/stdio.h', 100.00, 1, 100.00, 2
+./lib/fflush.gcda, 'lib/fflush.c', 85.71, 7, 100.00, 6
+./lib/xmalloc.gcda, 'lib/xmalloc.c', 27.16, 81, 18.42, 76
+./lib/xmalloc.gcda, 'lib/ialloc.h', 0.00, 13, 0.00, 14
+./lib/xmalloc.gcda, 'lib/xalloc.h', 0.00, 2, 0.00, 0.00
+./lib/localcharset.gcda, 'lib/localcharset.c', 0.00, 8, 0.00, 4
+./lib/close-stream.gcda, 'lib/close-stream.c', 62.50, 8, 40.00, 10
+./lib/fopen-safer.gcda, 'lib/fopen-safer.c', 29.41, 17, 40.00, 10
+./lib/xmemcoll.gcda, 'lib/xmemcoll.c', 27.78, 18, 50.00, 4
+./lib/version-etc.gcda, 'lib/version-etc.c', 0.00, 58, 0.00, 23
+./lib/fclose.gcda, 'lib/stdio.h', 100.00, 1, 0.00, 0.00
+./lib/fclose.gcda, 'lib/fclose.c', 69.23, 13, 100.00, 10
+./lib/progname.gcda, 'lib/progname.c', 62.50, 16, 60.00, 10
+./lib/linebuffer.gcda, 'lib/linebuffer.c', 83.33, 30, 100.00, 16
+./lib/fcntl.gcda, 'lib/fcntl.c', 0.00, 51, 0.00, 22
+./lib/dup-safer.gcda, 'lib/dup-safer.c', 0.00, 2, 0.00, 0.00
+./lib/mbrtowc.gcda, 'lib/wchar.h', 0.00, 1, 0.00, 2
+./lib/mbrtowc.gcda, 'lib/mbrtowc.c', 0.00, 9, 0.00, 6
+./lib/closeout.gcda, 'lib/closeout.c', 23.53, 17, 40.00, 10
+./lib/memcoll.gcda, 'lib/memcoll.c', 20.00, 30, 28.57, 14
+./lib/xalloc-die.gcda, 'lib/xalloc-die.c', 0.00, 3, 0.00, 0.00
+./lib/fseeko.gcda, 'lib/fseeko.c', 0.00, 10, 0.00, 8
+directory, /home/ubuntu/configuration-fuzzer/afl-targets/coreutils
+total_no_of_statements, 1044
+total_statement_coverage_%, 28.94%
+total_no_of_branches, 758
+total_branch_coverage_%, 29.23%
