@@ -133,6 +133,7 @@ if __name__ == "__main__":
         fout.write("\n".encode('latin1'))
         for opt in opt_list:
             fout.write(str(opt).encode('latin1'))
+            fout.write('\n'.encode('latin1'))
 
     elif (args.get_grammar):
         miner = OptionGrammarMiner(test_bin, log=False)
@@ -163,8 +164,10 @@ if __name__ == "__main__":
         if coverage == Coverage():
             fout.write("Empty coverage received.".encode("latin1"))
             fout.write(str(coverage).encode("latin1"))
+            fout.write('\n'.encode('latin1'))
         else:
             fout.write(str(coverage).encode("latin1"))
+            fout.write('\n'.encode('latin1'))
 
     elif (args.get_manual_coverage):
         myrunner = OptionRunner(test_bin)

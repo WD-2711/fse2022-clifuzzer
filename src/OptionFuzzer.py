@@ -29,10 +29,10 @@ class CovClass():
 
     def run_coverage(self, gcov_options=False):
         executable = self.executable
-        gcov_options = ""
+        gcov_options1 = ""
         if gcov_options:
-            gcov_options = "-b "
-        invocation =  "gcov " + gcov_options + executable
+            gcov_options1 = "-b "
+        invocation =  "gcov " + gcov_options1 + executable
         gcov_call = subprocess.run(invocation.split(), stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE,
                                         universal_newlines=True)
@@ -50,7 +50,7 @@ class CovClass():
             print("The subprocess gcov call returned 0 with stderr:\n{}".format(gcov_call.stderr))
 
     def extract_coverage_data(self):
-        self.run_coverage()
+        self.run_coverage(True)
         lc = 0
         bc = 0
         bt = 0
