@@ -55,14 +55,14 @@ def random_string(stringlength=30, exclude_list=[], shell=False):
         str1 = "$'" + str1 + "'"
     return str1
 
-# The LD_PRELOAD trick works differently in Linux and MacOS.
-# os.uname() returns a tuple of (sysname nodename release version machine). I need the sysname.
+# LD_PRELOAD 在 Linux 和 MacOS 中的工作方式不同
+# LD_PRELOAD 是环境变量，用于在程序启动时强制性地加载指定的共享库
+# os.uname() 返回元组 (sysname,nodename,release,version,machine)
 def get_env(dynlink_list):
-    # require dynlink_list to contain just names and not extensions. e.g. myopen, mystrcmp.
+    # dynlink_list 例如 myopen,mystrcmp,mygetopt
     dl_path = os.getcwd() + '/c-lib/'
-    env = {
-        **os.environ
-    }
+    # 相当于 env = os.environ
+    env = { **os.environ }
     if os.uname()[0] == "Darwin":
         extension = ".dylib"
     elif os.uname()[0] == "Linux":
@@ -242,15 +242,18 @@ def run_process_with_test_option_value(process, Option, num_args, arg="lkjfhsfr"
 '''
 From https://linux.die.net/man/3/getopt
 
-By default, getopt() permutes the contents of argv as it scans, so that eventually all the nonoptions are at the end. Two other modes are also implemented. If the first character of optstring is '+' or the environment variable POSIXLY_CORRECT is set, then option processing stops as soon as a nonoption argument is encountered. If the first character of optstring is '-', then each nonoption argv-element is handled as if it were the argument of an option with character code 1. (This is used by programs that were written to expect options and other argv-elements in any order and that care about the ordering of the two.) The special argument "--" forces an end of option-scanning regardless of the scanning mode.
-If the first character (following any optional '+' or '-' described above) of optstring is a colon (':'), then getopt() returns ':' instead of '?' to indicate a missing option argument.
+默认情况下，getopt() 在扫描时会排列 argv 的内容，以便最终所有非选项都位于末尾。 
+还实现了另外两种模式。 
+如果 optstring 的第一个字符是 "+" 或设置了环境变量 POSIXLY_CORRECT，则一旦遇到非选项参数，选项处理就会停止。 
+如果 optstring 的第一个字符是 "-"，则非选项 argv 元素都将被处理为字符代码为 1 的选项的参数。
+无论扫描模式如何，特殊参数 "--" 都会强制结束选项扫描。
+如果 optstring 的第一个字符（跟在上述任何可选的 "+" 或 "-" 之后）是冒号（":"），则 getopt() 返回 ":" 而不是 "?"，来指示缺少的选项参数。
 '''
 def get_options(process, insert_invalid_options=False, log=False):
     env = get_env(["mygetopt"])
+    # 运行 process，并将 env 作为环境变量，其中 env["LD_PRELOAD"] = mygetopt.so（这应该覆盖了原来的 getopt 函数）
     try:
-        exec_result = subprocess.run(process, env=env, stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE,
-                                        universal_newlines=True)
+        exec_result = subprocess.run(process, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         out = exec_result.stdout
         err = exec_result.stderr
         if log:
@@ -268,21 +271,22 @@ def get_options(process, insert_invalid_options=False, log=False):
             print ("options extraction return code:", exec_result.returncode)
             print ("options return failed with no output")
         return None
+    # 忽略最后的 ''
+    # 表示运行 process 会输出 args_list
+    args_list = out.split('\n')[:-1]
 
-    args_list = out.split('\n')[:-1]# ignoring the last ''
-
-    # this means the program doesn't use getopt or its variants
-    # the exception is handled in the caller "get_grammar"
+    # 这意味着程序不使用 getopt 或其变体
+    # 异常在调用者 get_grammar 中处理
     if 'optstring: ' not in args_list[0]:
         return None
-    # first we parse the single character options
-    if len(args_list[0].split()) <2:
+    # 首先解析单字符选项
+    if len(args_list[0].split()) < 2:
         single_c_options = ""
     else:
         single_c_options = args_list[0].split()[1]
     options_list = []
     ind = 0
-    # we don't consider getopt list starting with '+' or '-' or ':'
+    # 不考虑以 "+" 或 "-" 或 ":" 开头的 getopt 列表
     if single_c_options != "" and (single_c_options[0] in ['+', '-', ':']):
         single_c_options = single_c_options[1:]
     # the following check eliminates the cases when single_c_options would begin with '+:' or '-:'

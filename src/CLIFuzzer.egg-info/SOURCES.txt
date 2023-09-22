@@ -1,0 +1,7 @@
+README.md
+setup.py
+src/CLIFuzzer.egg-info/PKG-INFO
+src/CLIFuzzer.egg-info/SOURCES.txt
+src/CLIFuzzer.egg-info/dependency_links.txt
+src/CLIFuzzer.egg-info/requires.txt
+src/CLIFuzzer.egg-info/top_level.txt

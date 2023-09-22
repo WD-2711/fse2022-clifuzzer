@@ -79,35 +79,32 @@ def get_fuzz_results (outstream, myfuzzer, fuzz_count, get_coverage):
         outstream.write("\n".encode('latin1'))
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Run Configuration fuzzing on the given binary')
-    parser.add_argument("binary", help="Binary or path to Binary to fuzz on")
+    parser = argparse.ArgumentParser(description='对给定的二进制文件运行配置模糊测试')
+    parser.add_argument("binary", help="要模糊测试的二进制文件路径")
+    # ex_group 的 options 中只能选一个 option
     ex_group = parser.add_mutually_exclusive_group()
-    ex_group.add_argument("--get-grammar", help="Print the grammar extracted from options",
-                            action="store_true")
-    ex_group.add_argument("--get-options", help="Print a list of cmdline options available in the binary",
-                            action="store_true")
-    ex_group.add_argument("-f","--fuzz", help="No. of times the fuzzer should fuzz the binary and note unexpected behaviour including crashes and interesting return codes", type=int)
-    ex_group.add_argument("--get-coverage", help="Extract the coverage achieved in the tool",
-                            action="store_true")
-    ex_group.add_argument("--fuzz-coverage", help="Run fuzz FUZZ_COVERAGE times and then report the extracted coverage. Equivalent to running -f FUZZ_COVERAGE first and then running --get-coverage on a binary", type=int)
-    ex_group.add_argument("--get-manual-coverage", help="Extract the manual testing coverage of the binary",
-                            action="store_true")
-    parser.add_argument("-o", help="File to dump the output to. Defaults to binary-name.out")
-    parser.add_argument("-g", "--gram-file", help="File containing the grammar to fuzz from.")
-    parser.add_argument("--log-pass", help="logs passing invocations as well.", action="store_true")
-    parser.add_argument("--invalid-options", help="Inserts invalid options into the grammar ",
-                            action="store_true")
-    parser.add_argument("--invalid-values", help="Inserts invalid values for some options in the grammar",
-                            action="store_true")
-    parser.add_argument("--seed", help="Seed for randomising")
+    ex_group.add_argument("--get-grammar", help="打印从选项中提取的语法", action="store_true")
+    ex_group.add_argument("--get-options", help="打印二进制文件中可用的命令行选项列表", action="store_true")
+    ex_group.add_argument("-f","--fuzz", help="fuzzer 模糊二进制文件的次数", type=int)
+    ex_group.add_argument("--get-coverage", help="fuzzer 实现的覆盖率", action="store_true")
+    ex_group.add_argument("--fuzz-coverage", help="运行模糊测试 fuzz-coverage 次，然后报告提取的覆盖率。 相当于先运行 -f fuzz-coverage 然后运行 --get-coverage", type=int)
+    ex_group.add_argument("--get-manual-coverage", help="提取二进制文件的手动测试覆盖率", action="store_true")
+
+    parser.add_argument("-o", help="将输出转储到文件， 默认为 name.out")
+    parser.add_argument("-g", "--gram-file", help="语法文件")
+    parser.add_argument("--log-pass", help="使用选项的 log", action="store_true")
+    parser.add_argument("--invalid-options", help="将无效选项插入到语法中", action="store_true")
+    parser.add_argument("--invalid-values", help="在语法中，对某些选项插入无效值", action="store_true")
+    parser.add_argument("--seed", help="随机种子")
     args = parser.parse_args()
 
     gram_file = None
     test_bin = args.binary
-    # print (args)
+
     if args.seed:
         random.seed(args.seed)
     else:
+        # utils.RANDOM_SEED = 20001
         random.seed(utils.RANDOM_SEED)
 
     if (args.o):
@@ -118,7 +115,6 @@ if __name__ == "__main__":
 
     print("Test binary: {}!".format(test_bin))
     print("Writing to:", outputfilename)
-    #fout.write("Test binary: {}!\n".format(test_bin).encode('latin1'))
 
     if (args.log_pass):
         STORE_PASS_VALUE = True
@@ -128,6 +124,7 @@ if __name__ == "__main__":
         gram_file = args.gram_file
 
     if (args.get_options):
+        # 从二进制文件中提取 options（命令行参数）
         opt_list = utils.get_options(test_bin, args.invalid_options)
         fout.write(utils.Option_tuple_description.encode('latin1'))
         fout.write("\n".encode('latin1'))

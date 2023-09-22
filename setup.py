@@ -25,6 +25,7 @@ setuptools.setup(
         "Topic :: Software Development :: Testing"
     ],
     python_requires='>=3.6',
+    # 在 src 目录下查找所有的 python 包，并返回给 packages
     package_dir={'':'src'},
     packages=setuptools.find_packages()
 )
