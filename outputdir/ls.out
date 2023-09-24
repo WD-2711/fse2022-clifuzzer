@@ -1,0 +1,10 @@
+Fuzzing /usr/bin/ls 100 times now starting at 2023-09-24 16:29:29.530974!
+
+EXCEPTION REPORTS - 
+
+CRASH RESULTS - 
+
+UNRESOLVED RESULTS - 
+
+
+Finished fuzzing /usr/bin/ls 100 times  at 2023-09-24 16:44:46.971903!

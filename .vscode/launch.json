@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "python": "/usr/bin/python3",
+            "console": "integratedTerminal",
+            "args": [
+                // 获得语法
+                // "--get-grammar",
+                // "-o", "outputdir/ls-gram.json",
+                // "/usr/bin/ls",
+
+                // 进行 fuzz
+                // "--fuzz", "100",
+                // "--gram-file", "outputdir/ls-gram.json",
+                // "-o", "outputdir/ls.out",
+                // "/usr/bin/ls",
+
+                // 获得覆盖率
+                "--get-coverage",
+                "-o", "outputdir/ls.cov",
+                "/usr/bin/ls",                
+              ],
+        }
+    ]
+}

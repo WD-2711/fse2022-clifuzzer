@@ -18,13 +18,10 @@ class CovClass():
 
     def clear_coverage_data(self):
         invocation =  "rm -f " + self.executable + ".gcda"
-        dlt_call = subprocess.run(invocation.split(), stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE,
-                                        universal_newlines=True)
+        dlt_call = subprocess.run(invocation.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
         if dlt_call.returncode != 0 or dlt_call.stderr != "" :
-            print ("The subprocess rm call returned {} with the following stderr:\n{}".format(dlt_call.returncode,
-                                                                                              dlt_call.stderr))
+            print ("The subprocess rm call returned {} with the following stderr:\n{}".format(dlt_call.returncode, dlt_call.stderr))
             sys.exit(1)
 
     def run_coverage(self, gcov_options=False):
@@ -33,9 +30,8 @@ class CovClass():
         if gcov_options:
             gcov_options1 = "-b "
         invocation =  "gcov " + gcov_options1 + executable
-        gcov_call = subprocess.run(invocation.split(), stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE,
-                                        universal_newlines=True)
+        # 使用 gcov 工具生成覆盖率报告
+        gcov_call = subprocess.run(invocation.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
         if gcov_call.returncode != 0 or gcov_call.stdout == "":
             print ("The subprocess gcov call returned {} with the following stderr:\n{}".format(gcov_call.returncode, gcov_call.stderr))
@@ -74,24 +70,21 @@ class CovClass():
 
         return Coverage(lc, bc, bt, ce, 0)
 
-#TODO: Maybe extend this class to allow for combinatorial fuzzing.
 class OptionFuzzer(GrammarCoverageFuzzer):
     link_tools = [ 'link', 'readlink', 'unlink', 'ln']
     link_tools_that_need_the_file = ['readlink', 'unlink']
     mkpipe_tools = ['mkfifo', 'mknod']
-    #these tools require input from stdin (or redirected stdin)
-    #plain subprocess.run can't redirect from a file and hence we have to invoke shell.
+    # 这些工具需要来自 stdin 的输入，普通的 subprocess.run 无法从文件重定向，因此我们必须调用 shell
     redirect_in_tools = ["as-new", "bc", "col", "colrm", "dc", "gdb", "tee", "tr", "xargs"]
 
-    def __init__(self, runner, extra_rules=None, invalid_options=False,
-                    invalid_values=False, *args, **kwargs):
+    def __init__(self, runner, extra_rules=None, invalid_options=False, invalid_values=False, *args, **kwargs):
         assert issubclass(type(runner), OptionRunner)
         self.runner = runner
         self.executable = runner.get_executable()
         self.tool_name = self.executable.split("/")[-1]
+        # 其中 self.executable='/usr/bin/ls'，self.tool_name='ls'
         self.cov_class = CovClass(self.executable)
-        # the following Coverage() tuples contain the following detail
-        # [%lines covered, %branches covered, %branches taken, %calls taken, %successful_calls]
+        # 以下 Coverage() 元组包含以下详细信息：[%lines covered, %branches covered, %branches taken, %calls taken, %successful_calls]
         self.base_coverage = Coverage()
         self.manual_test_coverage = Coverage()
         self.fuzz_coverage = dict()
@@ -107,8 +100,9 @@ class OptionFuzzer(GrammarCoverageFuzzer):
         dirreference = "FILE_backup"
         emptydir = "FILE/emptydir"
         needs_update_list = []
-        if not check_file_existence(dirreference):
-            raise FileNotFoundError("The reference directory {} wasn't found".format(dirreference))
+        # 一开始是没有注释的，但是如果不注释的话就运行不下去
+        # if not check_file_existence(dirreference):
+        #     raise FileNotFoundError("The reference directory {} wasn't found".format(dirreference))
         if not check_file_existence(dircheck):
             needs_update_list.append(dircheck)
             needs_update_list.append(emptydir) #also add the empty dir
@@ -120,8 +114,7 @@ class OptionFuzzer(GrammarCoverageFuzzer):
             dr_st = os.stat(dirreference)
             dr_oct_st = oct(dr_st.st_mode)
             if dr_oct_st not in expected_st:
-                raise PermissionError("The reference directory's ({}) ".format(dirreference) +
-                    "permissions- {} don't belong in {}".format(dr_oct_st, expected_st))
+                raise PermissionError("The reference directory's ({}) ".format(dirreference) + "permissions- {} don't belong in {}".format(dr_oct_st, expected_st))
             if dc_oct_st != dr_oct_st:
                 needs_update_list.append(dircheck)
             #check for the empty directory in FILE needed to test only rmdir (not needed for mkdir)
@@ -154,8 +147,7 @@ class OptionFuzzer(GrammarCoverageFuzzer):
                 fr_st = os.stat(referencefileprefix + f)
                 fr_oct_st = oct(fr_st.st_mode)
                 if fr_oct_st not in expected_st:
-                    raise PermissionError("The reference file's ({}) ".format(referencefileprefix + f) +
-                    "permissions- {} don't belong in {}".format(fr_oct_st, expected_st))
+                    raise PermissionError("The reference file's ({}) ".format(referencefileprefix + f) + "permissions- {} don't belong in {}".format(fr_oct_st, expected_st))
                 if fc_oct_st != fr_oct_st:
                     needs_update_list.append(fileprefix + f)
                 elif not filecmp.cmp(fileprefix + f, referencefileprefix + f, shallow=False):
@@ -165,21 +157,18 @@ class OptionFuzzer(GrammarCoverageFuzzer):
     def update_files(self, needs_update_list, is_dir):
         for df in needs_update_list:
             path = Path(df)
-            # running under sudo is dangerous
-            # also this works only when the user doesn't need to input password to sudo
             if is_dir:
                 rm_invocation = ["sudo", "rm", "-rf"]
                 cp_invocation = ["cp", "-r"]
             else:
                 rm_invocation = ["sudo", "rm", "-f"]
                 cp_invocation = ["cp"]
-            if path.exists(): #file already exists but permissions have changed
+            if path.exists():
                 rm_invocation.append(df)
                 subprocess.run(rm_invocation)
             copy_from = df.replace("FILE","FILE_backup")
             cp_invocation.append(copy_from)
             cp_invocation.append(df)
-            # print (cp_invocation)
             subprocess.run(cp_invocation)
 
     def remove_linked_file(self):
@@ -205,12 +194,13 @@ class OptionFuzzer(GrammarCoverageFuzzer):
         runner = self.runner
         assert issubclass(type(runner), OptionRunner)
         if fuzzit:
-            update_dir_list = self.check_dir()
-            if update_dir_list:
-                self.update_files(update_dir_list, True)
-            update_file_list = self.check_files()
-            if update_file_list:
-                self.update_files(update_file_list, False)
+            # check_dir 函数总是 raise FileNotFoundError，因为程序找不到 FILE_backup
+            # update_dir_list = self.check_dir()
+            # if update_dir_list:
+            #     self.update_files(update_dir_list, True)
+            # update_file_list = self.check_files()
+            # if update_file_list:
+            #     self.update_files(update_file_list, False)
             if self.tool_name in self.link_tools:
                 self.remove_linked_file()
             if self.tool_name in self.link_tools_that_need_the_file:
@@ -223,13 +213,15 @@ class OptionFuzzer(GrammarCoverageFuzzer):
             if self.tool_name in self.redirect_in_tools:
                 shell=True
             # self.grammar
+            # 对于 ls，fuzzstring=' --dereference'
+            # 重要：产生 fuzz 字符串
             fuzzstring = self.fuzz()
             if exclude_whitespace:
                 exclude_list = [' ']
             else:
                 exclude_list = []
-            # This only works when single option characters have a space between
-            # them and the "str", if it compulsorily needs a str.
+            # 仅当单个选项字符与 str 之间有空格（如果它强制需要 str）时，这才有效
+            # 生成随机字符串来放入到选项中
             while re.search("=str\?", fuzzstring) is not None:
                 if random.random() > 0.3:
                     rstr = random_string(random_string_length, exclude_list, shell)
@@ -275,7 +267,7 @@ class OptionFuzzer(GrammarCoverageFuzzer):
             while re.search("str$", fuzzstring) is not None:
                 rstr = random_string(random_string_length, exclude_list, shell)
                 fuzzstring = re.sub("str$", rstr, fuzzstring, count=1)
-
+            # /usr/bin/ls --dereference
             self.invocation = runner.get_executable() + fuzzstring
         else:
             self.invocation = runner.get_executable()

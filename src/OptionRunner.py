@@ -9,12 +9,12 @@ from fuzzingbook.Grammars import convert_ebnf_grammar
 import subprocess, os, json
 
 class OptionRunner(ProgramRunner):
-    # Pass path to grammarfile in the init
     def __init__(self, program, grammarfile=None):
         if isinstance(program, str):
             self.executable = program
         else:
             self.executable = program[0]
+        # 存在 grammarfile 文件
         if grammarfile is not None and os.path.exists(grammarfile):
             with open(grammarfile, 'r') as gramjsonfile:
                 self._ebnf_grammar=json.load(gramjsonfile)
@@ -52,6 +52,7 @@ class OptionRunner(ProgramRunner):
         miner = OptionGrammarMiner(self.executable)
         self._ebnf_grammar = miner.mine_ebnf_grammar(invalid_options, invalid_values)
         if self._ebnf_grammar is not None and extra_rules is not None:
+            # 除了 grammar 还有额外的条件
             self.set_rules(extra_rules)
 
     def ebnf_grammar(self):
@@ -65,7 +66,7 @@ class OptionRunner(ProgramRunner):
     def set_rules(self, rules):
         for key, value in rules.items():
             self._ebnf_grammar[key] = value
-        # Delete rules for previous arguments
+        # 删除之前参数的规则
         for nonterminal in unreachable_nonterminals(self._ebnf_grammar):
             del self._ebnf_grammar[nonterminal]
 

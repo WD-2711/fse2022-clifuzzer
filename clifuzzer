@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-sys.path.append('./src')
+sys.path.append('/home/wd/Desktop/file/fse2022-clifuzzer/src')
 import argparse
 import utils
 import os
@@ -14,7 +14,7 @@ from OptionRunner import OptionRunner
 from OptionFuzzer import OptionFuzzer
 from utils import Coverage
 
-#Update this to true if we wish to also store the pass list.
+# Update this to true if we wish to also store the pass list.
 STORE_PASS_VALUE = False
 
 def get_fuzz_results (outstream, myfuzzer, fuzz_count, get_coverage):
@@ -22,6 +22,7 @@ def get_fuzz_results (outstream, myfuzzer, fuzz_count, get_coverage):
     unresolved_list = []
     exception_list = []
     pass_list = []
+    # 进行 fuzz
     for i in range(fuzz_count):
         try:
             output = myfuzzer.run(fuzzit=True)
@@ -33,22 +34,13 @@ def get_fuzz_results (outstream, myfuzzer, fuzz_count, get_coverage):
 
             if output[1] == 'FAIL':
                 fail_list.append([i, args, output[0].returncode])
-                # uncomment the next two lines if output and error needs to be logged.
-                # fail_list.append([i, " ".join(output[0].args), output[0].returncode,
-                                    # (output[0].stdout + " ::: " + output[0].stderr)])
-
             elif output[1] == 'UNRESOLVED' and output[0].returncode >2 :
                 unresolved_list.append([i, args, output[0].returncode])
-                # uncomment the next two lines if output and error needs to be logged.
-                # unresolved_list.append([i, output[0].returncode, " ".join(output[0].args),
-                                    # (output[0].stdout + " ::: " + output[0].stderr)])
             else:
                 if STORE_PASS_VALUE :
-                    # only note down the parameters passed and not the output.
                     pass_list.append([i, args, output[0].returncode])
         except Exception as e:
-            exception_list.append("Exception occured - {}: {}, for invocation number - {} and input - {}".format(e.__class__,
-            e, i, myfuzzer.invocation))
+            exception_list.append("Exception occured - {}: {}, for invocation number - {} and input - {}".format(e.__class__, e, i, myfuzzer.invocation))
 
     if get_coverage:
         coverage = myfuzzer.get_coverage()
@@ -107,6 +99,7 @@ if __name__ == "__main__":
         # utils.RANDOM_SEED = 20001
         random.seed(utils.RANDOM_SEED)
 
+    # 创建输出文件
     if (args.o):
         outputfilename = args.o
     else:
@@ -123,8 +116,9 @@ if __name__ == "__main__":
         print("Reading grammar from:", args.gram_file)
         gram_file = args.gram_file
 
+    # 将读取的 options 写入到 outputfilename 中
     if (args.get_options):
-        # 从二进制文件中提取 options（命令行参数）
+        # 从要 fuzz 的文件中提取 options（命令行参数）
         opt_list = utils.get_options(test_bin, args.invalid_options)
         fout.write(utils.Option_tuple_description.encode('latin1'))
         fout.write("\n".encode('latin1'))
@@ -132,22 +126,21 @@ if __name__ == "__main__":
             fout.write(str(opt).encode('latin1'))
             fout.write('\n'.encode('latin1'))
 
+    # 获得要 fuzz 文件的语法
     elif (args.get_grammar):
         miner = OptionGrammarMiner(test_bin, log=False)
         mined_grammar = miner.mine_ebnf_grammar(args.invalid_options, args.invalid_values)
         fout.write(json.dumps(mined_grammar, indent=4).encode('latin1'))
 
+    # 是否进行 fuzz
     elif (args.fuzz):
         if gram_file:
             myrunner = OptionRunner(test_bin, gram_file)
         else:
             myrunner = OptionRunner(test_bin)
-        myfuzzer = OptionFuzzer(myrunner, invalid_options=args.invalid_options,
-                                invalid_values=args.invalid_values, max_nonterminals=5)
-        print("Fuzzing {} {} times now starting at {}!".format(test_bin,
-            args.fuzz, datetime.now()))
-        fout.write("Fuzzing {} {} times now starting at {}!\n".format(test_bin,
-            args.fuzz, datetime.now()).encode('latin1'))
+        myfuzzer = OptionFuzzer(myrunner, invalid_options=args.invalid_options, invalid_values=args.invalid_values, max_nonterminals=5)
+        print("Fuzzing {} {} times now starting at {}!".format(test_bin, args.fuzz, datetime.now()))
+        fout.write("Fuzzing {} {} times now starting at {}!\n".format(test_bin, args.fuzz, datetime.now()).encode('latin1'))
         get_fuzz_results(fout, myfuzzer, args.fuzz, False)
         fout.write("\nFinished fuzzing {} {} times  at {}!".format(test_bin,
         args.fuzz, datetime.now()).encode('latin1'))
@@ -155,8 +148,7 @@ if __name__ == "__main__":
 
     elif (args.get_coverage):
         myrunner = OptionRunner(test_bin)
-        myfuzzer = OptionFuzzer(myrunner, invalid_options=args.invalid_options,
-                                invalid_values=args.invalid_values, max_nonterminals=5)
+        myfuzzer = OptionFuzzer(myrunner, invalid_options=args.invalid_options, invalid_values=args.invalid_values, max_nonterminals=5)
         coverage = myfuzzer.get_coverage()
         if coverage == Coverage():
             fout.write("Empty coverage received.".encode("latin1"))
@@ -177,15 +169,11 @@ if __name__ == "__main__":
             myrunner = OptionRunner(test_bin, gram_file)
         else:
             myrunner = OptionRunner(test_bin)
-        myfuzzer = OptionFuzzer(myrunner, invalid_options=args.invalid_options,
-                                invalid_values=args.invalid_values, max_nonterminals=5)
-        print("Fuzzing {} {} times now starting at {}!".format(test_bin,
-            args.fuzz, datetime.now()))
-        fout.write("Fuzzing {} {} times now starting at {}!\n".format(test_bin,
-            args.fuzz, datetime.now()).encode('latin1'))
+        myfuzzer = OptionFuzzer(myrunner, invalid_options=args.invalid_options, invalid_values=args.invalid_values, max_nonterminals=5)
+        print("Fuzzing {} {} times now starting at {}!".format(test_bin, args.fuzz, datetime.now()))
+        fout.write("Fuzzing {} {} times now starting at {}!\n".format(test_bin, args.fuzz, datetime.now()).encode('latin1'))
         get_fuzz_results(fout, myfuzzer, args.fuzz_coverage, True)
-        fout.write("\nFinished fuzzing {} {} times  at {}!".format(test_bin,
-        args.fuzz, datetime.now()).encode('latin1'))
+        fout.write("\nFinished fuzzing {} {} times  at {}!".format(test_bin, args.fuzz, datetime.now()).encode('latin1'))
         print("Finished fuzzing {} {} times at {}!".format(test_bin, args.fuzz, datetime.now()))
     print("Writing done!")
     fout.close()

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# This file contains the OptionGrammarMiner I wrote during the seminar.
+# 选项语法挖掘器
 
 import utils
 from fuzzingbook.Grammars import START_SYMBOL
@@ -10,9 +10,12 @@ from fuzzingbook.GrammarCoverageFuzzer import GrammarCoverageFuzzer
 import sys
 
 class OptionGrammarMiner(object):
-    OPTION_SYMBOL = "<option>" # all options
-    ARGUMENTS_SYMBOL = "<arguments>" # command line arguments
-    OTHER_OPTION_SYMBOL = "<other_option>" # non hv_options
+    # 所有选项
+    OPTION_SYMBOL = "<option>"
+    # 命令行参数
+    ARGUMENTS_SYMBOL = "<arguments>"
+    # 其他选项
+    OTHER_OPTION_SYMBOL = "<other_option>"
 
     def __init__(self, process, log=False):
         self.process = process
@@ -39,6 +42,14 @@ class OptionGrammarMiner(object):
             raise utils.ParseInterrupt
 
     def mine_ebnf_grammar(self, insert_invalid_options=False, insert_invalid_values=False):
+        """
+        {
+            '<start>': ['<option><arguments>'], 
+            '<option>': ['(<other_option>)*'], 
+            '<arguments>': [''], 
+            '<other_option>': []
+        }
+        """
         self.grammar = {
             START_SYMBOL: [self.OPTION_SYMBOL  + self.ARGUMENTS_SYMBOL],
             self.OPTION_SYMBOL: ["(" + self.OTHER_OPTION_SYMBOL+ ")*"],
@@ -47,7 +58,8 @@ class OptionGrammarMiner(object):
         }
         try:
             self.get_grammar(insert_invalid_options, insert_invalid_values)
-        except utils.ParseInterrupt: #No grammar was extracted in the utils module
+        except utils.ParseInterrupt:
+            # 并没有提取到语法
             self.grammar = None
         return self.grammar
 
@@ -55,34 +67,35 @@ class OptionGrammarMiner(object):
         return convert_ebnf_grammar(self.mine_ebnf_grammar())
 
     def get_grammar(self, insert_invalid_options=False, insert_invalid_values=False):
+        # 获得 options_list
         options_list = utils.get_options(self.process, insert_invalid_options, self.log)
         if options_list == None:
             raise utils.ParseInterrupt
 
-        # this also mightn't work with arguments that need redirection i.e. stdin
+        # 这可能不适用于需要重定向的参数，即 stdin
+        # 运行 "ls dufo23opq"，提取有效的参数值 num_args（num_args 是什么意思？
+        # ）
         num_args = utils.run_process_with_test_arg(self.process, 'dufo23opq')
 
         filelist = [" FILE", " FILE/HelloWorld.py",
                     " FILE/emptyfile", " FILE/testopt", " FILE/README",
                     " FILE/image.jpg", " FILE/audio.wav", " FILE/largeaudio.wav",
                     " FILE/E.coli", " FILE/bible.txt", " FILE/world192.txt"]
-        # we don't need to do anything for tools that need 0 arguments e.g. date, dd
+        # 对于不需要参数的程序，不需要做任何事情，例如 date
         if num_args == 1:
-            # can send at least one argument
+            # 需要至少 1 个参数
             self.grammar[self.ARGUMENTS_SYMBOL] = ["<files>"]
             self.grammar["<files>"] = filelist
             for i in range(30):
                 self.grammar["<files>"].append(" FILE/s"+ str(i))
             for i in range(30):
                 self.grammar["<files>"].append(" FILE/l"+ str(i))
-
             if insert_invalid_values:
                 self.grammar["<files>"].append(" FILE/" + utils.random_string(100))
                 self.grammar["<files>"].append(" FILE/" + utils.random_string(300))
         elif num_args == 2:
-            # need exactly 2 arguments
+            # 需要至少 2 个参数
             self.grammar[self.ARGUMENTS_SYMBOL] = ["<files1><files2>"]
-
             self.grammar["<files1>"] = filelist
             self.grammar["<files2>"] = filelist
             for i in range(30):
@@ -96,11 +109,12 @@ class OptionGrammarMiner(object):
                 self.grammar["<files1>"].append(" FILE/" + utils.random_string(300))
                 self.grammar["<files2>"].append(" FILE/" + utils.random_string(100))
                 self.grammar["<files2>"].append(" FILE/" + utils.random_string(300))
-
+        
+        # 丰富 gramar['<other_option>']
         for option in options_list:
+            # 对于 ls 命令，num_args=0
             self.process_arg(option, num_args, insert_invalid_values)
-
-        if not self.grammar[self.OTHER_OPTION_SYMBOL]: # this is empty
+        if not self.grammar[self.OTHER_OPTION_SYMBOL]:
             self.grammar[self.OTHER_OPTION_SYMBOL] = ['']
 
     def add_str_rule(self, insert_invalid_values=False):
@@ -139,7 +153,7 @@ class OptionGrammarMiner(object):
         else:
             self.grammar["<int>"] = ["<decimal-int>", "<octal-int>", "<hex-int>"]
 
-
+    # 选项后跟的参数类型
     def add_arguments(self, option, args, insert_invalid_values=False):
         if args == "Number":
             self.add_int_rule()
@@ -165,63 +179,53 @@ class OptionGrammarMiner(object):
                 return "str"
         elif type(args) is list:
             opt_name = option.name
-            # self.add_str_rule()
-            # self.add_int_rule()
             if option.has_arg == 2:
                 if option.char_option:
                     args = [' {0}'.format(element) for element in args]
-                    # args.append(" <str>")
-                    # args.append(" <int>")
                     self.grammar["<"+opt_name+"1>"] = args
                     return "<"+opt_name+"1>?"
                 else:
                     args = ['={0}'.format(element) for element in args]
-                    # args.append('=<str>')
-                    # args.append("=<int>")
                     self.grammar["<"+opt_name+"1>"] = args
                     return "<"+opt_name+"1>?"
             else:
-                # args.append("<str>")
-                # args.append("<int>")
                 self.grammar["<"+opt_name+"1>"] = args
                 return "<"+opt_name+"1>"
         else:
             print (option, args)
 
+    # 处理选项
     def process_arg(self, option, num_args, insert_invalid_values=False):
-
         if option.name == 'help' or option.name == 'version':
             return
         else:
+            # target = "<other_option>"
             target = self.OTHER_OPTION_SYMBOL
-
         if option.char_option:
+            # 单字符选项
             prefix = '-'
             separator = " "
         else:
+            # 长选项
             prefix = "--"
             separator = "="
-
-        # option takes an optional argument.
+        # option 采用可选参数，参数可有可无
         if option.has_arg == 2:
             args = utils.run_process_with_test_option_value(self.process, option, num_args)
             if args is None:
                 arg = " " + prefix + option.name + "__ optional value expected __"
             else:
-                arg = " " + prefix + option.name + self.add_arguments(option,
-                        args, insert_invalid_values)
+                arg = " " + prefix + option.name + self.add_arguments(option, args, insert_invalid_values)
 
-
-        # option takes an required argument.
+        # option 必须要有参数
         elif option.has_arg == 1:
             args = utils.run_process_with_test_option_value(self.process, option, num_args)
             if args is None:
                 arg = " " + prefix + option.name + "__ required value expected __"
             else:
-                arg = " " + prefix + option.name + separator + self.add_arguments(option,
-                        args, insert_invalid_values)
+                arg = " " + prefix + option.name + separator + self.add_arguments(option, args, insert_invalid_values)
 
-        # option takes no arguments
+        # option 无需参数
         else:
             arg = " " + prefix + option.name
 
